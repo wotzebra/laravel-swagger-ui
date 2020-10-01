@@ -1,0 +1,50 @@
+{
+    "name": "nextapps/laravel-swagger-ui",
+    "description": "Add Swagger UI to a Laravel application.",
+    "keywords": [
+        "nextapps",
+        "laravel-swagger-ui"
+    ],
+    "homepage": "https://github.com/nextapps/laravel-swagger-ui",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Günther Debrauwer",
+            "email": "gunther@nextapps.be",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "illuminate/support": "^8.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "NextApps\\SwaggerUI\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NextApps\\SwaggerUI\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NextApps\\SwaggerUI\\SwaggerUIServiceProvider"
+            ]
+        }
+    }
+}
