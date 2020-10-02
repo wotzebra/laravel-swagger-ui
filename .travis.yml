@@ -1,21 +1,29 @@
 language: php
 
-php:
-  - 7.1
-  - 7.2
-  - 7.3
-
 env:
-  matrix:
-    - COMPOSER_FLAGS="--prefer-lowest"
-    - COMPOSER_FLAGS=""
+  global:
+    - COVERAGE=0
+
+matrix:
+  include:
+    - php: 7.4
+      env: COMPOSER_FLAGS='--prefer-lowest'
+    - php: 7.4
+      env: COMPOSER_FLAGS='--prefer-stable'
 
 before_script:
+    - composer config discard-changes true
+
+before_install:
   - travis_retry composer self-update
-  - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
+  - travis_retry composer require "illuminate/support:${LARAVEL}" --no-interaction --no-update
+  - travis_retry composer require "orchestra/testbench:${TESTBENCH}" --dev --no-interaction --no-update
+
+install:
+  - travis_retry composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction --no-suggest
 
 script:
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
 
-after_script:
-  - php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover
+after_success:
+  - if [[ $COVERAGE = 1 ]]; then php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover report; fi
