@@ -7,6 +7,7 @@
         <title>{{ config('app.name') }} - Swagger</title>
 
         <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@latest/swagger-ui.css">
+
         <style>
             html {
                 box-sizing: border-box;
@@ -17,10 +18,13 @@
             }
 
             body {
-                margin:0;
+                margin: 0;
                 background: #fafafa;
             }
         </style>
+    </head>
+    <body>
+        <div id="swagger-ui"></div>
 
         <script src="https://unpkg.com/swagger-ui-dist@latest/swagger-ui-standalone-preset.js"></script>
         <script src="https://unpkg.com/swagger-ui-dist@latest/swagger-ui-bundle.js"></script>
@@ -47,8 +51,5 @@
                 });
             };
         </script>
-    </head>
-    <body>
-        <div id="swagger-ui"></div>
     </body>
 </html>
