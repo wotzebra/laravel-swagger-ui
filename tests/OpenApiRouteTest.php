@@ -4,8 +4,8 @@ namespace NextApps\SwaggerUI\Test;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Gate;
-use Orchestra\Testbench\TestCase;
 use NextApps\SwaggerUI\SwaggerUIServiceProvider;
+use Orchestra\Testbench\TestCase;
 
 class OpenApiRouteTest extends TestCase
 {

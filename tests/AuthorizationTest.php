@@ -2,10 +2,10 @@
 
 namespace NextApps\SwaggerUI\Test;
 
-use Orchestra\Testbench\TestCase;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\Gate;
 use NextApps\SwaggerUI\SwaggerUIServiceProvider;
+use Orchestra\Testbench\TestCase;
 
 class AuthorizationTest extends TestCase
 {
@@ -63,7 +63,7 @@ class AuthorizationTest extends TestCase
     {
         $this->actingAs(new Authenticated());
 
-        Gate::define('viewSwaggerUI', function (Authenticated $user)  {
+        Gate::define('viewSwaggerUI', function (Authenticated $user) {
             return $user->getAuthIdentifier() === 'swagger-ui-test';
         });
 

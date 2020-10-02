@@ -41,5 +41,5 @@ return [
 
         'client_id' => env('SWAGGER_UI_OAUTH_CLIENT_ID'),
         'client_secret' => env('SWAGGER_UI_OAUTH_CLIENT_SECRET'),
-    ]
+    ],
 ];

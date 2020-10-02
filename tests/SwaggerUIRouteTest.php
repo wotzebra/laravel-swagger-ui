@@ -4,8 +4,8 @@ namespace NextApps\SwaggerUI\Test;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Gate;
-use Orchestra\Testbench\TestCase;
 use NextApps\SwaggerUI\SwaggerUIServiceProvider;
+use Orchestra\Testbench\TestCase;
 
 class SwaggerUIRouteTest extends TestCase
 {
@@ -43,7 +43,7 @@ class SwaggerUIRouteTest extends TestCase
 
         $this->get('swagger')
             ->assertStatus(200)
-            ->assertSee('url: \'' . route('swagger-openapi-json', [], false) . '\'', false);
+            ->assertSee('url: \''.route('swagger-openapi-json', [], false).'\'', false);
     }
 
     /** @test */
