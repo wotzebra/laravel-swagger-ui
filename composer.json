@@ -3,7 +3,10 @@
     "description": "Add Swagger UI to a Laravel application.",
     "keywords": [
         "nextapps",
-        "laravel-swagger-ui"
+        "laravel",
+        "swagger",
+        "swagger-ui",
+        "openapi"
     ],
     "homepage": "https://github.com/nextapps/laravel-swagger-ui",
     "license": "MIT",
@@ -17,7 +20,7 @@
     ],
     "require": {
         "php": "^7.4",
-        "illuminate/support": "^8.0"
+        "laravel/framework": "^8.0"
     },
     "require-dev": {
         "orchestra/testbench": "^6.0",
