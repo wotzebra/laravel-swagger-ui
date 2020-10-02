@@ -18,16 +18,14 @@ class SwaggerUIServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../config/swagger-ui.php' => config_path('swagger-ui.php'),
-            ], 'config');
+            ], 'swagger-ui-config');
+
+            $this->publishes([
+                __DIR__.'/../stubs/SwaggerUIServiceProvider.stub' => app_path('Providers/SwaggerUIServiceProvider.php'),
+            ], 'swagger-ui-provider');
         }
 
-        Route::middleware('web')
-            ->prefix(config('swagger-ui.path'))
-            ->group(function () {
-                Route::view('/', 'swagger-ui::index')->name('swagger-ui');
-
-                Route::get('openapi.json', OpenApiJsonController::class)->name('swagger-openapi-json');
-            });
+        $this->loadRoutes();
     }
 
     /**
@@ -36,5 +34,21 @@ class SwaggerUIServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/swagger-ui.php', 'swagger-ui');
+    }
+
+    /**
+     * Load the Swagger UI routes.
+     *
+     * @return void
+     */
+    protected function loadRoutes()
+    {
+        Route::middleware(['web', EnsureUserIsAuthorized::class])
+            ->prefix(config('swagger-ui.path'))
+            ->group(function () {
+                Route::view('/', 'swagger-ui::index')->name('swagger-ui');
+
+                Route::get('openapi.json', OpenApiJsonController::class)->name('swagger-openapi-json');
+            });
     }
 }
