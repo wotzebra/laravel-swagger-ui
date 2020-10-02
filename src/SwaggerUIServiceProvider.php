@@ -5,6 +5,7 @@ namespace NextApps\SwaggerUI;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use NextApps\SwaggerUI\OpenApiJsonController;
+use NextApps\SwaggerUI\Console\InstallCommand;
 
 class SwaggerUIServiceProvider extends ServiceProvider
 {
@@ -34,6 +35,8 @@ class SwaggerUIServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/swagger-ui.php', 'swagger-ui');
+
+        $this->commands([InstallCommand::class]);
     }
 
     /**
