@@ -1,6 +1,6 @@
 <?php
 
-namespace NextApps\SwaggerUI\Tests;
+namespace NextApps\SwaggerUI\Test;
 
 use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Facades\Gate;
@@ -9,6 +9,18 @@ use NextApps\SwaggerUI\SwaggerUIServiceProvider;
 
 class AuthorizationTest extends TestCase
 {
+    /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        config()->set('swagger-ui.file', __DIR__.'/testfiles/openapi.json');
+    }
+
     /**
      * Get the package providers.
      *
