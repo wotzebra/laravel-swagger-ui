@@ -35,6 +35,8 @@ return [
     |
     */
     'oauth' => [
+        'path' => env('SWAGGER_UI_OAUTH_PATH', 'oauth/token'),
+
         'client_id' => env('SWAGGER_UI_OAUTH_CLIENT_ID'),
         'client_secret' => env('SWAGGER_UI_OAUTH_CLIENT_SECRET'),
     ]
