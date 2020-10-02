@@ -4,8 +4,9 @@ namespace NextApps\SwaggerUI;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use NextApps\SwaggerUI\OpenApiJsonController;
+use NextApps\SwaggerUI\Http\Middleware\OpenApiJsonController;
 use NextApps\SwaggerUI\Console\InstallCommand;
+use NextApps\SwaggerUI\Http\Middleware\EnsureUserIsAuthorized;
 
 class SwaggerUIServiceProvider extends ServiceProvider
 {
