@@ -4,6 +4,7 @@ namespace NextApps\SwaggerUI;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use NextApps\SwaggerUI\OpenApiJsonController;
 
 class SwaggerUIServiceProvider extends ServiceProvider
 {
@@ -25,15 +26,7 @@ class SwaggerUIServiceProvider extends ServiceProvider
             ->group(function () {
                 Route::view('/', 'swagger-ui::index')->name('swagger-ui');
 
-                Route::get('openapi.json', function () {
-                    $json = file_get_contents(config('swagger-ui.file'));
-                    $json = json_decode($json, true);
-
-                    $json['schemes'] = [parse_url(config('app.url'), PHP_URL_SCHEME)];
-                    $json['host'] = str_replace($json['schemes'][0], '', config('app.url'));
-
-                    return $json;
-                })->name('swagger-openapi-json');
+                Route::get('openapi.json', OpenApiJsonController::class)->name('swagger-openapi-json');
             });
     }
 
