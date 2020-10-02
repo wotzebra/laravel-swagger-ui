@@ -16,8 +16,6 @@ before_script:
 
 before_install:
   - travis_retry composer self-update
-  - travis_retry composer require "illuminate/support:${LARAVEL}" --no-interaction --no-update
-  - travis_retry composer require "orchestra/testbench:${TESTBENCH}" --dev --no-interaction --no-update
 
 install:
   - travis_retry composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction --no-suggest
