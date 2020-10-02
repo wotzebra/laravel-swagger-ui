@@ -13,7 +13,7 @@ class OpenApiJsonController
     {
         $json = $this->getJson();
 
-        $json = $this->configureHost($json);
+        $json = $this->configureServer($json);
         $json = $this->configureOAuth($json);
 
         return response()->json($json);
@@ -32,16 +32,17 @@ class OpenApiJsonController
     }
 
     /**
-     * Configure the host and schemes in OpenAPI JSON, based on current environment.
+     * Configure the server in OpenAPI JSON, based on current environment.
      *
      * @param array $json
      *
      * @return array
      */
-    protected function configureHost(array $json)
+    protected function configureServer(array $json)
     {
-        $json['schemes'] = [parse_url(config('app.url'), PHP_URL_SCHEME)];
-        $json['host'] = str_replace("{$json['schemes'][0]}://", '', config('app.url'));
+        $json['servers'] = [
+            ['url' => config('app.url')],
+        ];
 
         return $json;
     }
@@ -55,12 +56,32 @@ class OpenApiJsonController
      */
     protected function configureOAuth(array $json)
     {
-        $json['securityDefinitions'] = collect($json['securityDefinitions'])->map(function ($definition) {
-            if ($definition['type'] === 'oauth2') {
-                $definition['tokenUrl'] = url(config('swagger-ui.oauth.path'));
+        if (empty($json['components']['securitySchemes'])) {
+            return $json;
+        }
+
+        $json['components']['securitySchemes'] = collect($json['components']['securitySchemes'])->map(function ($scheme) {
+            if ($scheme['type'] !== 'oauth2') {
+                return $scheme;
             }
 
-            return $definition;
+            $scheme['flows'] = collect($scheme['flows'])->map(function ($flow) {
+                if (isset($flow['tokenUrl'])) {
+                    $flow['tokenUrl'] = url(config('swagger-ui.oauth.token_path'));
+                }
+
+                if (isset($flow['refreshUrl'])) {
+                    $flow['refreshUrl'] = url(config('swagger-ui.oauth.refresh_path'));
+                }
+
+                if (isset($flow['authorizationUrl'])) {
+                    $flow['authorizationUrl'] = url(config('swagger-ui.oauth.authorization_path'));
+                }
+
+                return $flow;
+            });
+
+            return $scheme;
         });
 
         return $json;
