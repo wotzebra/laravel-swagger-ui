@@ -4,10 +4,26 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@3.12.1/swagger-ui.css">
+        <title>{{ config('app.name') }} - Swagger</title>
 
-        <script src="https://unpkg.com/swagger-ui-dist@3.12.1/swagger-ui-standalone-preset.js"></script>
-        <script src="https://unpkg.com/swagger-ui-dist@3.12.1/swagger-ui-bundle.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@latest/swagger-ui.css">
+        <style>
+            html {
+                box-sizing: border-box;
+            }
+
+            *, *:before, *:after {
+                box-sizing: inherit;
+            }
+
+            body {
+                margin:0;
+                background: #fafafa;
+            }
+        </style>
+
+        <script src="https://unpkg.com/swagger-ui-dist@latest/swagger-ui-standalone-preset.js"></script>
+        <script src="https://unpkg.com/swagger-ui-dist@latest/swagger-ui-bundle.js"></script>
 
         <script>
             window.onload = function () {
@@ -17,18 +33,18 @@
                     deepLinking: true,
                     presets: [
                         SwaggerUIBundle.presets.apis,
-                        SwaggerUIStandalonePreset
+                        SwaggerUIStandalonePreset,
                     ],
                     plugins: [
-                        SwaggerUIBundle.plugins.DownloadUrl
+                        SwaggerUIBundle.plugins.DownloadUrl,
                     ],
-                    layout: "StandaloneLayout",
-                })
+                    layout: 'StandaloneLayout',
+                });
 
                 ui.initOAuth({
                     clientId: '{{ config('swagger-ui.oauth.client_id') }}',
                     clientSecret: '{{ config('swagger-ui.oauth.client_secret') }}',
-                })
+                });
             };
         </script>
     </head>
