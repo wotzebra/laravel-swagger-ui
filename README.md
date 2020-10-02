@@ -1,8 +1,8 @@
 # Laravel Swagger UI
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/nextapps/laravel-swagger-ui.svg?style=flat-square)](https://packagist.org/packages/nextapps/laravel-swagger-ui)
-[![Build Status](https://img.shields.io/travis/nextapps/laravel-swagger-ui/master.svg?style=flat-square)](https://travis-ci.org/nextapps/laravel-swagger-ui)
-[![Quality Score](https://img.shields.io/scrutinizer/g/nextapps/laravel-swagger-ui.svg?style=flat-square)](https://scrutinizer-ci.com/g/nextapps/laravel-swagger-ui)
+[![Build Status](https://img.shields.io/travis/nextapps-be/laravel-swagger-ui/master.svg?style=flat-square)](https://travis-ci.org/nextapps-be/laravel-swagger-ui)
+[![Quality Score](https://img.shields.io/scrutinizer/g/nextapps-be/laravel-swagger-ui.svg?style=flat-square)](https://scrutinizer-ci.com/g/nextapps-be/laravel-swagger-ui)
 [![Total Downloads](https://img.shields.io/packagist/dt/nextapps/laravel-swagger-ui.svg?style=flat-square)](https://packagist.org/packages/nextapps/laravel-swagger-ui)
 
 This package makes it easy to make your project's Swagger (OpenAPI v3 JSON) file accessible in a Swagger UI right in your Laravel application.
@@ -25,8 +25,62 @@ php artisan swagger-ui:install
 
 ## Usage
 
+The Swagger UI is exposed at `/swagger`. By default, you will only be able to access it in the local environment. Within your `app/Providers/SwaggerUIServiceProvider.php` file, there is a `gate` method. This authorization gate controls access to Swagger UI in non-local environments. You can modify this gate as needed to restrict access to your Swagger UI and Swagger (OpenAPI v3) file:
+
 ``` php
-// Usage description here
+/**
+ * Register the Swagger UI gate.
+ *
+ * This gate determines who can access Swagger UI in non-local environments.
+ *
+ * @return void
+ */
+protected function gate()
+{
+    Gate::define('viewSwaggerUI', function ($user = null) {
+        return in_array(optional($user)->email, [
+            //
+        ]);
+    });
+}
+```
+
+In the published `config/swagger-ui.php` file, you edit the path to the Swagger UI and the location of the Swagger (OpenAPI v3) file. By default, the package expects to find the OpenAPI json file in 'resources/swagger' directory.
+
+```php
+// in config/swagger-ui.php
+
+return [
+    // ...
+
+    'path' => 'swagger',
+
+    'file' => resource_path('swagger/openapi.json'),
+    
+    // ...
+];
+```
+
+You also have the option to customize the oauth setup. By default, the oauth paths are configured based on Laravel Passport.
+You can also set a client ID and client secret. These values will be automatically prefilled in the authentication view in Swagger UI.
+
+```php
+// in config/swagger-ui.php
+
+return [
+    // ...
+
+    'oauth' => [
+        'token_path' => 'oauth/token',
+        'refresh_path' => 'oauth/token',
+        'authorization_path' => 'oauth/authorize',
+
+        'client_id' => env('SWAGGER_UI_OAUTH_CLIENT_ID'),
+        'client_secret' => env('SWAGGER_UI_OAUTH_CLIENT_SECRET'),
+    ];
+    
+    // ...
+];
 ```
 
 ### Testing
