@@ -1,6 +1,6 @@
 <?php
 
-namespace NextApps\SwaggerUI\Http\Middleware;
+namespace NextApps\SwaggerUi\Http\Middleware;
 
 use Illuminate\Support\Facades\Gate;
 

@@ -1,14 +1,14 @@
 <?php
 
-namespace NextApps\SwaggerUI;
+namespace NextApps\SwaggerUi;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use NextApps\SwaggerUI\Console\InstallCommand;
-use NextApps\SwaggerUI\Http\Controllers\OpenApiJsonController;
-use NextApps\SwaggerUI\Http\Middleware\EnsureUserIsAuthorized;
+use NextApps\SwaggerUi\Console\InstallCommand;
+use NextApps\SwaggerUi\Http\Controllers\OpenApiJsonController;
+use NextApps\SwaggerUi\Http\Middleware\EnsureUserIsAuthorized;
 
-class SwaggerUIServiceProvider extends ServiceProvider
+class SwaggerUiServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -23,7 +23,7 @@ class SwaggerUIServiceProvider extends ServiceProvider
             ], 'swagger-ui-config');
 
             $this->publishes([
-                __DIR__.'/../stubs/SwaggerUIServiceProvider.stub' => app_path('Providers/SwaggerUIServiceProvider.php'),
+                __DIR__.'/../stubs/SwaggerUiServiceProvider.stub' => app_path('Providers/SwaggerUiServiceProvider.php'),
             ], 'swagger-ui-provider');
         }
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace NextApps\SwaggerUI\Test;
+namespace NextApps\SwaggerUi\Test;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Gate;
-use NextApps\SwaggerUI\SwaggerUIServiceProvider;
+use NextApps\SwaggerUi\SwaggerUIServiceProvider;
 use Orchestra\Testbench\TestCase;
 
-class SwaggerUIRouteTest extends TestCase
+class SwaggerUiRouteTest extends TestCase
 {
     /**
      * Setup the test environment.
@@ -32,7 +32,7 @@ class SwaggerUIRouteTest extends TestCase
      */
     protected function getPackageProviders($app)
     {
-        return [SwaggerUIServiceProvider::class];
+        return [SwaggerUiServiceProvider::class];
     }
 
     /** @test */

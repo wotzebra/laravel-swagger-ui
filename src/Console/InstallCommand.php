@@ -1,6 +1,6 @@
 <?php
 
-namespace NextApps\SwaggerUI\Console;
+namespace NextApps\SwaggerUi\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -34,7 +34,7 @@ class InstallCommand extends Command
         $this->comment('Publishing Swagger UI Config...');
         $this->callSilent('vendor:publish', ['--tag' => 'swagger-ui-config']);
 
-        $this->registerSwaggerUIServiceProvider();
+        $this->registerSwaggerUiServiceProvider();
 
         $this->info('Swagger UI scaffolding installed successfully.');
     }
@@ -44,13 +44,13 @@ class InstallCommand extends Command
      *
      * @return void
      */
-    protected function registerSwaggerUIServiceProvider()
+    protected function registerSwaggerUiServiceProvider()
     {
         $namespace = Str::replaceLast('\\', '', $this->laravel->getNamespace());
 
         $appConfig = file_get_contents(config_path('app.php'));
 
-        if (Str::contains($appConfig, $namespace.'\\Providers\\SwaggerUIServiceProvider::class')) {
+        if (Str::contains($appConfig, $namespace.'\\Providers\\SwaggerUiServiceProvider::class')) {
             return;
         }
 
@@ -64,14 +64,14 @@ class InstallCommand extends Command
 
         file_put_contents(config_path('app.php'), str_replace(
             "{$namespace}\\Providers\RouteServiceProvider::class,".$eol,
-            "{$namespace}\\Providers\RouteServiceProvider::class,".$eol."        {$namespace}\Providers\SwaggerUIServiceProvider::class,".$eol,
+            "{$namespace}\\Providers\RouteServiceProvider::class,".$eol."        {$namespace}\Providers\SwaggerUiServiceProvider::class,".$eol,
             $appConfig
         ));
 
-        file_put_contents(app_path('Providers/SwaggerUIServiceProvider.php'), str_replace(
+        file_put_contents(app_path('Providers/SwaggerUiServiceProvider.php'), str_replace(
             "namespace App\Providers;",
             "namespace {$namespace}\Providers;",
-            file_get_contents(app_path('Providers/SwaggerUIServiceProvider.php'))
+            file_get_contents(app_path('Providers/SwaggerUiServiceProvider.php'))
         ));
     }
 }

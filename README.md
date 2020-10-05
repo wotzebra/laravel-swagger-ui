@@ -25,7 +25,7 @@ php artisan swagger-ui:install
 
 ## Usage
 
-The Swagger UI is exposed at `/swagger`. By default, you will only be able to access it in the local environment. Within your `app/Providers/SwaggerUIServiceProvider.php` file, there is a `gate` method. This authorization gate controls access to Swagger UI in non-local environments. You can modify this gate as needed to restrict access to your Swagger UI and Swagger (OpenAPI v3) file:
+The Swagger UI is exposed at `/swagger`. By default, you will only be able to access it in the local environment. Within your `app/Providers/SwaggerUiServiceProvider.php` file, there is a `gate` method. This authorization gate controls access to Swagger UI in non-local environments. You can modify this gate as needed to restrict access to your Swagger UI and Swagger (OpenAPI v3) file:
 
 ``` php
 /**
@@ -56,7 +56,7 @@ return [
     'path' => 'swagger',
 
     'file' => resource_path('swagger/openapi.json'),
-    
+
     // ...
 ];
 ```
@@ -78,7 +78,7 @@ return [
         'client_id' => env('SWAGGER_UI_OAUTH_CLIENT_ID'),
         'client_secret' => env('SWAGGER_UI_OAUTH_CLIENT_SECRET'),
     ];
-    
+
     // ...
 ];
 ```

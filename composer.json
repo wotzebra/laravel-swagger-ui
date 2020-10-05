@@ -28,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NextApps\\SwaggerUI\\": "src"
+            "NextApps\\SwaggerUi\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NextApps\\SwaggerUI\\Tests\\": "tests"
+            "NextApps\\SwaggerUi\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -46,7 +46,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "NextApps\\SwaggerUI\\SwaggerUIServiceProvider"
+                "NextApps\\SwaggerUi\\SwaggerUiServiceProvider"
             ]
         }
     }
