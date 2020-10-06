@@ -4,7 +4,7 @@ namespace NextApps\SwaggerUi\Test;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Gate;
-use NextApps\SwaggerUi\SwaggerUIServiceProvider;
+use NextApps\SwaggerUi\SwaggerUiServiceProvider;
 use Orchestra\Testbench\TestCase;
 
 class SwaggerUiRouteTest extends TestCase
