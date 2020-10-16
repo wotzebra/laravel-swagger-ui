@@ -2,6 +2,6 @@
 
 All notable changes to `laravel-swagger-ui` will be documented in this file
 
-## 1.0.0 - 201X-XX-XX
+## 0.1.0 - 2020-10-16
 
-- initial release
+- Initial release
