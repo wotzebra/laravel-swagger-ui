@@ -1,8 +1,7 @@
 # Laravel Swagger UI
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/nextapps/laravel-swagger-ui.svg?style=flat-square)](https://packagist.org/packages/nextapps/laravel-swagger-ui)
-[![Build Status](https://img.shields.io/travis/nextapps-be/laravel-swagger-ui/master.svg?style=flat-square)](https://travis-ci.org/nextapps-be/laravel-swagger-ui)
-[![Quality Score](https://img.shields.io/scrutinizer/g/nextapps-be/laravel-swagger-ui.svg?style=flat-square)](https://scrutinizer-ci.com/g/nextapps-be/laravel-swagger-ui)
+[![GitHub 'Run Tests' Workflow Status](https://img.shields.io/github/workflow/status/nextapps-be/laravel-swagger-ui/run-tests?label=tests&style=flat-square&logo=github)](https://github.com/nextapps-be/laravel-swagger-ui/actions?query=workflow%3Arun-tests)
 [![Total Downloads](https://img.shields.io/packagist/dt/nextapps/laravel-swagger-ui.svg?style=flat-square)](https://packagist.org/packages/nextapps/laravel-swagger-ui)
 
 This package makes it easy to make your project's Swagger (OpenAPI v3 JSON) file accessible in a Swagger UI right in your Laravel application.
@@ -87,6 +86,12 @@ return [
 
 ``` bash
 composer test
+```
+
+## Linting
+
+```bash
+composer lint
 ```
 
 ### Changelog
