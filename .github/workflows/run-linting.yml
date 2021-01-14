@@ -1,0 +1,20 @@
+name: run-linting
+
+on:
+    push:
+      branches:
+        - master
+    pull_request:
+
+jobs:
+    run-linting:
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v2
+
+            -   name: Fix style
+                uses: docker://oskarstark/php-cs-fixer-ga
+                with:
+                    args: --config=.php_cs --dry-run --diff-format="udiff"
