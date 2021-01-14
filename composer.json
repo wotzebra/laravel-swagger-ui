@@ -41,7 +41,7 @@
         "test": "vendor/bin/phpunit",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
         "lint": "vendor/bin/php-cs-fixer fix",
-        "lint-dry": "vendor/bin/php-cs-fixer fix --dry-run --diff-format=udiff",
+        "lint-dry": "vendor/bin/php-cs-fixer fix --dry-run --diff-format=udiff"
     },
     "config": {
         "sort-packages": true
