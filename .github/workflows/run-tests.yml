@@ -18,8 +18,6 @@ jobs:
                 include:
                     -   laravel: 8.*
                         testbench: 6.*
-                    -   laravel: 7.*
-                        testbench: 5.*
                 exclude:
                     -   php: 8.0
                         dependency-version: prefer-lowest
