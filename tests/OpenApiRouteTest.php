@@ -78,7 +78,7 @@ class OpenApiRouteTest extends TestCase
     public function it_adds_base_path_to_endpoint_url()
     {
         config()->set('app.url', 'http://foo.bar');
-        config()->set('swagger-ui.api_base_path', "/api/v1");
+        config()->set('swagger-ui.api_base_path', '/api/v1');
 
         $this->get('swagger/openapi.json')
             ->assertStatus(200)
