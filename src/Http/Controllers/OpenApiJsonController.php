@@ -13,9 +13,7 @@ class OpenApiJsonController
     {
         $json = $this->getJson();
 
-        if (config('swagger-ui.local_server_only')) {
-            $json = $this->configureServer($json);
-        }
+        $json = $this->configureServer($json);
         $json = $this->configureOAuth($json);
 
         return response()->json($json);
@@ -42,6 +40,10 @@ class OpenApiJsonController
      */
     protected function configureServer(array $json)
     {
+        if (! config('swagger-ui.use_app_url')) {
+            return $json;
+        }
+
         $json['servers'] = [
             ['url' => config('app.url').config('swagger-ui.api_base_path')],
         ];

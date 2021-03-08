@@ -61,4 +61,28 @@ class OpenApiRouteTest extends TestCase
             ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.tokenUrl', 'http://localhost/this-is-token-path')
             ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.refreshUrl', 'http://localhost/this-is-refresh-path');
     }
+
+    /** @test */
+    public function it_allows_to_use_server_list_from_openapi_file()
+    {
+        config()->set('app.url', 'http://foo.bar');
+        config()->set('swagger-ui.use_app_url', false);
+
+        $this->get('swagger/openapi.json')
+            ->assertStatus(200)
+            ->assertJsonCount(1, 'servers')
+            ->assertJsonPath('servers.0.url', 'http://localhost:3000');
+    }
+
+    /** @test */
+    public function it_adds_base_path_to_endpoint_url()
+    {
+        config()->set('app.url', 'http://foo.bar');
+        config()->set('swagger-ui.api_base_path', "/api/v1");
+
+        $this->get('swagger/openapi.json')
+            ->assertStatus(200)
+            ->assertJsonCount(1, 'servers')
+            ->assertJsonPath('servers.0.url', 'http://foo.bar/api/v1');
+    }
 }

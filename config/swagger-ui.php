@@ -52,7 +52,7 @@ return [
     | Set this option to false, to use list of servers from openapi.json file
     |
     */
-    'local_server_only' => env('SWAGGER_LOCAL_SERVER_ONLY', true),
+    'use_app_url' => env('SWAGGER_UI_USE_APP_URL', true),
 
     /*
     |--------------------------------------------------------------------------
