@@ -36,37 +36,21 @@ class OpenApiRouteTest extends TestCase
     }
 
     /** @test */
-    public function it_sets_server_to_current_app_url()
+    public function it_sets_servers()
     {
-        config()->set('app.url', 'http://foo.bar');
+        config()->set('swagger-ui.servers', ['http://foo.bar', 'http://bar.baz']);
 
         $this->get('swagger/openapi.json')
             ->assertStatus(200)
-            ->assertJsonCount(1, 'servers')
-            ->assertJsonPath('servers.0.url', 'http://foo.bar');
+            ->assertJsonCount(2, 'servers')
+            ->assertJsonPath('servers.0.url', 'http://foo.bar')
+            ->assertJsonPath('servers.1.url', 'http://bar.baz');
     }
 
     /** @test */
-    public function it_sets_oauth_urls_by_combining_configured_paths_with_current_app_url()
+    public function it_does_not_set_servers_if_config_variable_is_null()
     {
-        config()->set('swagger-ui.oauth.token_path', 'this-is-token-path');
-        config()->set('swagger-ui.oauth.refresh_path', 'this-is-refresh-path');
-        config()->set('swagger-ui.oauth.authorization_path', 'this-is-authorization-path');
-
-        $this->get('swagger/openapi.json')
-            ->assertStatus(200)
-            ->assertJsonPath('components.securitySchemes.Foobar.flows.password.tokenUrl', 'http://localhost/this-is-token-path')
-            ->assertJsonPath('components.securitySchemes.Foobar.flows.password.refreshUrl', 'http://localhost/this-is-refresh-path')
-            ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.authorizationUrl', 'http://localhost/this-is-authorization-path')
-            ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.tokenUrl', 'http://localhost/this-is-token-path')
-            ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.refreshUrl', 'http://localhost/this-is-refresh-path');
-    }
-
-    /** @test */
-    public function it_allows_to_use_server_list_from_openapi_file()
-    {
-        config()->set('app.url', 'http://foo.bar');
-        config()->set('swagger-ui.use_app_url', false);
+        config()->set('swagger-ui.servers', null);
 
         $this->get('swagger/openapi.json')
             ->assertStatus(200)
@@ -75,14 +59,18 @@ class OpenApiRouteTest extends TestCase
     }
 
     /** @test */
-    public function it_adds_base_path_to_endpoint_url()
+    public function it_sets_oauth_urls()
     {
-        config()->set('app.url', 'http://foo.bar');
-        config()->set('swagger-ui.api_base_path', '/api/v1');
+        config()->set('swagger-ui.oauth.token_url', 'http://foo.bar/this-is-token-path');
+        config()->set('swagger-ui.oauth.refresh_url', 'http://bar.baz/this-is-refresh-path');
+        config()->set('swagger-ui.oauth.authorization_url', 'http://bar.foo/this-is-authorization-path');
 
         $this->get('swagger/openapi.json')
             ->assertStatus(200)
-            ->assertJsonCount(1, 'servers')
-            ->assertJsonPath('servers.0.url', 'http://foo.bar/api/v1');
+            ->assertJsonPath('components.securitySchemes.Foobar.flows.password.tokenUrl', 'http://foo.bar/this-is-token-path')
+            ->assertJsonPath('components.securitySchemes.Foobar.flows.password.refreshUrl', 'http://bar.baz/this-is-refresh-path')
+            ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.authorizationUrl', 'http://bar.foo/this-is-authorization-path')
+            ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.tokenUrl', 'http://foo.bar/this-is-token-path')
+            ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.refreshUrl', 'http://bar.baz/this-is-refresh-path');
     }
 }

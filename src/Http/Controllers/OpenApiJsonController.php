@@ -40,13 +40,11 @@ class OpenApiJsonController
      */
     protected function configureServer(array $json)
     {
-        if (! config('swagger-ui.use_app_url')) {
+        if (config('swagger-ui.servers') === null) {
             return $json;
         }
 
-        $json['servers'] = [
-            ['url' => config('app.url').config('swagger-ui.api_base_path')],
-        ];
+        $json['servers'] = collect(config('swagger-ui.servers'))->map(fn ($url) => ['url' => $url]);
 
         return $json;
     }
@@ -71,15 +69,15 @@ class OpenApiJsonController
 
             $scheme['flows'] = collect($scheme['flows'])->map(function ($flow) {
                 if (isset($flow['tokenUrl'])) {
-                    $flow['tokenUrl'] = url(config('swagger-ui.oauth.token_path'));
+                    $flow['tokenUrl'] = config('swagger-ui.oauth.token_url');
                 }
 
                 if (isset($flow['refreshUrl'])) {
-                    $flow['refreshUrl'] = url(config('swagger-ui.oauth.refresh_path'));
+                    $flow['refreshUrl'] = config('swagger-ui.oauth.refresh_url');
                 }
 
                 if (isset($flow['authorizationUrl'])) {
-                    $flow['authorizationUrl'] = url(config('swagger-ui.oauth.authorization_path'));
+                    $flow['authorizationUrl'] = config('swagger-ui.oauth.authorization_url');
                 }
 
                 return $flow;

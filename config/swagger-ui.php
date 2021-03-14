@@ -27,6 +27,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Swagger UI - Servers
+    |--------------------------------------------------------------------------
+    |
+    | This allows you to configure the server urls that are used within your
+    | project's OpenAPI / Swagger file. If this is set to null, then the
+    | servers in your OpenAPI / Swagger file will not be overwritten.
+    |
+    */
+    'servers' => [
+        env('APP_URL'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Swagger UI - OAuth Config
     |--------------------------------------------------------------------------
     |
@@ -35,33 +49,11 @@ return [
     |
     */
     'oauth' => [
-        'token_path' => 'oauth/token',
-        'refresh_path' => 'oauth/token',
-        'authorization_path' => 'oauth/authorize',
+        'token_url' => env('APP_URL').'/oauth/token',
+        'refresh_url' => env('APP_URL').'/oauth/token',
+        'authorization_url' => env('APP_URL').'/oauth/authorize',
 
         'client_id' => env('SWAGGER_UI_OAUTH_CLIENT_ID'),
         'client_secret' => env('SWAGGER_UI_OAUTH_CLIENT_SECRET'),
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Swagger UI - Current Server
-    |--------------------------------------------------------------------------
-    |
-    | This allows you to use all servers url in your openapi.json file (Not only local server)
-    | Set this option to false, to use list of servers from openapi.json file
-    |
-    */
-    'use_app_url' => env('SWAGGER_UI_USE_APP_URL', true),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Swagger UI - Api base path
-    |--------------------------------------------------------------------------
-    |
-    | This allows you to set suffix to you APP_URL
-    | Set this option to /api/v1, to send your requests to APP_URL/api/v1/... endpoints
-    |
-    */
-    'api_base_path' => env('SWAGGER_API_BASE_PATH'),
 ];
