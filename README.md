@@ -1,6 +1,6 @@
 # Laravel Swagger UI
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/nextapps/laravel-swagger-ui.svg?style=flat-square)](https://packagist.org/packages/james.rus52/laravel-swagger-ui)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/james.rus52/laravel-swagger-ui.svg?style=flat-square)](https://packagist.org/packages/james.rus52/laravel-swagger-ui)
 [![GitHub 'Run Tests' Workflow Status](https://img.shields.io/github/workflow/status/james.rus52/laravel-swagger-ui/run-tests?label=tests&style=flat-square&logo=github)](https://github.com/jamesRUS52/laravel-swagger-ui/actions?query=workflow%3Arun-tests)
 [![Total Downloads](https://img.shields.io/packagist/dt/james.rus52/laravel-swagger-ui.svg?style=flat-square)](https://packagist.org/packages/james.rus52/laravel-swagger-ui)
 

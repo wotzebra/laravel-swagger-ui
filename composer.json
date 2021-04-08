@@ -49,7 +49,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "NextApps\\SwaggerUi\\SwaggerUiServiceProvider"
+                "jamesRUS52\\Laravel\\SwaggerUi\\SwaggerUiServiceProvider"
             ]
         }
     }
