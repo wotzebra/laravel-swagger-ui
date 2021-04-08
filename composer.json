@@ -1,20 +1,20 @@
 {
-    "name": "nextapps/laravel-swagger-ui",
+    "name": "james.rus52/laravel-swagger-ui",
     "description": "Add Swagger UI to a Laravel application.",
     "keywords": [
-        "nextapps",
+        "james.rus52",
         "laravel",
         "swagger",
         "swagger-ui",
         "openapi"
     ],
-    "homepage": "https://github.com/nextapps/laravel-swagger-ui",
+    "homepage": "https://github.com/jamesRUS52/laravel-swagger-ui",
     "license": "MIT",
     "type": "library",
     "authors": [
         {
-            "name": "Günther Debrauwer",
-            "email": "gunther@nextapps.be",
+            "name": "Anton V. Davydov",
+            "email": "james.rus52@gmail.com",
             "role": "Developer"
         }
     ],
@@ -29,12 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NextApps\\SwaggerUi\\": "src"
+            "jamesRUS52\\Laravel\\SwaggerUi\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NextApps\\SwaggerUi\\Tests\\": "tests"
+            "jamesRUS52\\Laravel\\SwaggerUi\\Tests\\": "tests"
         }
     },
     "scripts": {

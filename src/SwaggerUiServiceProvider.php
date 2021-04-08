@@ -1,12 +1,12 @@
 <?php
 
-namespace NextApps\SwaggerUi;
+namespace jamesRUS52\Laravel\SwaggerUi;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use NextApps\SwaggerUi\Console\InstallCommand;
-use NextApps\SwaggerUi\Http\Controllers\OpenApiJsonController;
-use NextApps\SwaggerUi\Http\Middleware\EnsureUserIsAuthorized;
+use jamesRUS52\Laravel\SwaggerUi\Console\InstallCommand;
+use jamesRUS52\Laravel\SwaggerUi\Http\Controllers\OpenApiJsonController;
+use jamesRUS52\Laravel\SwaggerUi\Http\Middleware\EnsureUserIsAuthorized;
 
 class SwaggerUiServiceProvider extends ServiceProvider
 {

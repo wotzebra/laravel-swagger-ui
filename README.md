@@ -1,8 +1,8 @@
 # Laravel Swagger UI
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/nextapps/laravel-swagger-ui.svg?style=flat-square)](https://packagist.org/packages/nextapps/laravel-swagger-ui)
-[![GitHub 'Run Tests' Workflow Status](https://img.shields.io/github/workflow/status/nextapps-be/laravel-swagger-ui/run-tests?label=tests&style=flat-square&logo=github)](https://github.com/nextapps-be/laravel-swagger-ui/actions?query=workflow%3Arun-tests)
-[![Total Downloads](https://img.shields.io/packagist/dt/nextapps/laravel-swagger-ui.svg?style=flat-square)](https://packagist.org/packages/nextapps/laravel-swagger-ui)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/nextapps/laravel-swagger-ui.svg?style=flat-square)](https://packagist.org/packages/james.rus52/laravel-swagger-ui)
+[![GitHub 'Run Tests' Workflow Status](https://img.shields.io/github/workflow/status/james.rus52/laravel-swagger-ui/run-tests?label=tests&style=flat-square&logo=github)](https://github.com/jamesRUS52/laravel-swagger-ui/actions?query=workflow%3Arun-tests)
+[![Total Downloads](https://img.shields.io/packagist/dt/james.rus52/laravel-swagger-ui.svg?style=flat-square)](https://packagist.org/packages/james.rus52/laravel-swagger-ui)
 
 This package makes it easy to make your project's Swagger (OpenAPI v3 JSON) file accessible in a Swagger UI right in your Laravel application.
 
@@ -13,7 +13,7 @@ The Swagger UI will automatically use your current project environment. It will 
 You can install the package via composer:
 
 ```bash
-composer require nextapps/laravel-swagger-ui
+composer require james.rus52/laravel-swagger-ui
 ```
 
 After installing Laravel Swagger UI, publish its service provider and configuration file using the `swagger-ui:install` Artisan command.
@@ -109,7 +109,7 @@ If you discover any security related issues, please email gunther@nextapps.be in
 
 ## Credits
 
-- [Günther Debrauwer](https://github.com/gdebrauwer)
+- [Anton V. Davydov](https://github.com/jamesRUS52)
 - [All Contributors](../../contributors)
 
 ## License

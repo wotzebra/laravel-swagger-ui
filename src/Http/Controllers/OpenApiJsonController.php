@@ -1,6 +1,6 @@
 <?php
 
-namespace NextApps\SwaggerUi\Http\Controllers;
+namespace jamesRUS52\Laravel\SwaggerUi\Http\Controllers;
 
 class OpenApiJsonController
 {

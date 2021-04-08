@@ -1,10 +1,10 @@
 <?php
 
-namespace NextApps\SwaggerUi\Test;
+namespace jamesRUS52\Laravel\SwaggerUi\Tests;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Gate;
-use NextApps\SwaggerUi\SwaggerUiServiceProvider;
+use jamesRUS52\Laravel\SwaggerUi\SwaggerUiServiceProvider;
 use Orchestra\Testbench\TestCase;
 
 class SwaggerUiRouteTest extends TestCase
