@@ -2,6 +2,8 @@
 
 namespace NextApps\SwaggerUi\Http\Controllers;
 
+use Illuminate\Support\Str;
+
 class OpenApiJsonController
 {
     /**
@@ -27,6 +29,15 @@ class OpenApiJsonController
     protected function getJson()
     {
         $path = config('swagger-ui.file');
+
+        if(Str::endsWith($path, '.yaml'))
+        {
+            if(!extension_loaded('yaml'))
+            {
+                abort(500, sprintf('cannot parse provided YAML file: yaml extension is not loaded'));
+            }
+            return yaml_parse_file($path);
+        }
 
         return json_decode(file_get_contents($path), true);
     }

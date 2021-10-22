@@ -47,6 +47,18 @@ class OpenApiRouteTest extends TestCase
     }
 
     /** @test */
+    public function it_works_with_yaml()
+    {
+        config()->set('swagger-ui.file', __DIR__.'/testfiles/openapi.yaml');
+        config()->set('app.url', 'http://foo.bar');
+
+        $this->get('swagger/openapi.json')
+            ->assertStatus(200)
+            ->assertJsonCount(1, 'servers')
+            ->assertJsonPath('servers.0.url', 'http://foo.bar');
+    }
+
+    /** @test */
     public function it_sets_oauth_urls_by_combining_configured_paths_with_current_app_url()
     {
         config()->set('swagger-ui.oauth.token_path', 'this-is-token-path');
