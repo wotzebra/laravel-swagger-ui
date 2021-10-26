@@ -35,21 +35,21 @@ class OpenApiRouteTest extends TestCase
         return [SwaggerUiServiceProvider::class];
     }
 
-    /** @test */
-    public function it_sets_server_to_current_app_url()
+    public function provideOpenApiFiles()
     {
-        config()->set('app.url', 'http://foo.bar');
-
-        $this->get('swagger/openapi.json')
-            ->assertStatus(200)
-            ->assertJsonCount(1, 'servers')
-            ->assertJsonPath('servers.0.url', 'http://foo.bar');
+        return [
+            'json file' => [__DIR__ . '/testfiles/openapi.json'],
+            'yaml file' => [__DIR__ . '/testfiles/openapi.yaml'],
+        ];
     }
 
-    /** @test */
-    public function it_works_with_yaml()
+    /**
+     * @test
+     * @dataProvider provideOpenApiFiles
+     */
+    public function it_sets_server_to_current_app_url($openApiFile)
     {
-        config()->set('swagger-ui.file', __DIR__.'/testfiles/openapi.yaml');
+        config()->set('swagger-ui.file', $openApiFile);
         config()->set('app.url', 'http://foo.bar');
 
         $this->get('swagger/openapi.json')
