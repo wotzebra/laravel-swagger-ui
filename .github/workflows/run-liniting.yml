@@ -13,6 +13,6 @@ jobs:
                 uses: actions/checkout@v2
 
             -   name: Fix style
-                uses: docker://oskarstark/php-cs-fixer-ga
+                uses: docker://oskarstark/php-cs-fixer-ga@v2
                 with:
                     args: --config=.php_cs --dry-run --diff-format="udiff"
