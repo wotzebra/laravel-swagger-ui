@@ -38,8 +38,8 @@ class OpenApiRouteTest extends TestCase
     public function provideOpenApiFiles()
     {
         return [
-            'json file' => [__DIR__ . '/testfiles/openapi.json'],
-            'yaml file' => [__DIR__ . '/testfiles/openapi.yaml'],
+            'json file' => [__DIR__.'/testfiles/openapi.json'],
+            'yaml file' => [__DIR__.'/testfiles/openapi.yaml'],
         ];
     }
 
