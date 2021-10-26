@@ -30,12 +30,11 @@ class OpenApiJsonController
     {
         $path = config('swagger-ui.file');
 
-        if(Str::endsWith($path, '.yaml'))
-        {
-            if(!extension_loaded('yaml'))
-            {
-                abort(500, sprintf('cannot parse provided YAML file: yaml extension is not loaded'));
+        if (Str::endsWith($path, '.yaml')) {
+            if (! extension_loaded('yaml')) {
+                throw new RuntimeException('OpenAPI YAML file can not be parsed if the YAML extension is not loaded');
             }
+
             return yaml_parse_file($path);
         }
 
