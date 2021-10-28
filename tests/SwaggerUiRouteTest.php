@@ -14,11 +14,11 @@ class SwaggerUiRouteTest extends TestCase
      *
      * @return void
      */
-    protected function setUp(): void
+    protected function setUp() : void
     {
         parent::setUp();
 
-        config()->set('swagger-ui.file', __DIR__.'/testfiles/openapi.json');
+        config()->set('swagger-ui.file', __DIR__ . '/testfiles/openapi.json');
 
         Gate::define('viewSwaggerUI', fn (?Authenticatable $user) => true);
     }
@@ -43,7 +43,7 @@ class SwaggerUiRouteTest extends TestCase
 
         $this->get('swagger')
             ->assertStatus(200)
-            ->assertSee('url: \''.route('swagger-openapi-json', [], false).'\'', false);
+            ->assertSee('url: \'' . route('swagger-openapi-json', [], false) . '\'', false);
     }
 
     /** @test */

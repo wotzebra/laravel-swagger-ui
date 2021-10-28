@@ -9,8 +9,9 @@ class EnsureUserIsAuthorized
     /**
      * Ensures the user is authorized to visit Swagger UI.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
+     *
      * @return \Illuminate\Http\Response
      */
     public function handle($request, $next)

@@ -14,11 +14,11 @@ class OpenApiRouteTest extends TestCase
      *
      * @return void
      */
-    protected function setUp(): void
+    protected function setUp() : void
     {
         parent::setUp();
 
-        config()->set('swagger-ui.file', __DIR__.'/testfiles/openapi.json');
+        config()->set('swagger-ui.file', __DIR__ . '/testfiles/openapi.json');
 
         Gate::define('viewSwaggerUI', fn (?Authenticatable $user) => true);
     }
@@ -38,8 +38,8 @@ class OpenApiRouteTest extends TestCase
     public function openApiFileProvider() : array
     {
         return [
-            'json file' => [__DIR__.'/testfiles/openapi.json'],
-            'yaml file' => [__DIR__.'/testfiles/openapi.yaml'],
+            'json file' => [__DIR__ . '/testfiles/openapi.json'],
+            'yaml file' => [__DIR__ . '/testfiles/openapi.yaml'],
         ];
     }
 

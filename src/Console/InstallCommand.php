@@ -50,7 +50,7 @@ class InstallCommand extends Command
 
         $appConfig = file_get_contents(config_path('app.php'));
 
-        if (Str::contains($appConfig, $namespace.'\\Providers\\SwaggerUiServiceProvider::class')) {
+        if (Str::contains($appConfig, $namespace . '\\Providers\\SwaggerUiServiceProvider::class')) {
             return;
         }
 
@@ -63,8 +63,8 @@ class InstallCommand extends Command
         $eol = array_keys($lineEndingCount, max($lineEndingCount))[0];
 
         file_put_contents(config_path('app.php'), str_replace(
-            "{$namespace}\\Providers\RouteServiceProvider::class,".$eol,
-            "{$namespace}\\Providers\RouteServiceProvider::class,".$eol."        {$namespace}\Providers\SwaggerUiServiceProvider::class,".$eol,
+            "{$namespace}\\Providers\RouteServiceProvider::class," . $eol,
+            "{$namespace}\\Providers\RouteServiceProvider::class," . $eol . "        {$namespace}\Providers\SwaggerUiServiceProvider::class," . $eol,
             $appConfig
         ));
 

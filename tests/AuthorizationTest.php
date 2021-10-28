@@ -14,11 +14,11 @@ class AuthorizationTest extends TestCase
      *
      * @return void
      */
-    protected function setUp(): void
+    protected function setUp() : void
     {
         parent::setUp();
 
-        config()->set('swagger-ui.file', __DIR__.'/testfiles/openapi.json');
+        config()->set('swagger-ui.file', __DIR__ . '/testfiles/openapi.json');
     }
 
     /**

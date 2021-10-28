@@ -15,15 +15,15 @@ class SwaggerUiServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'swagger-ui');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'swagger-ui');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/swagger-ui.php' => config_path('swagger-ui.php'),
+                __DIR__ . '/../config/swagger-ui.php' => config_path('swagger-ui.php'),
             ], 'swagger-ui-config');
 
             $this->publishes([
-                __DIR__.'/../stubs/SwaggerUiServiceProvider.stub' => app_path('Providers/SwaggerUiServiceProvider.php'),
+                __DIR__ . '/../stubs/SwaggerUiServiceProvider.stub' => app_path('Providers/SwaggerUiServiceProvider.php'),
             ], 'swagger-ui-provider');
         }
 
@@ -35,7 +35,7 @@ class SwaggerUiServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/swagger-ui.php', 'swagger-ui');
+        $this->mergeConfigFrom(__DIR__ . '/../config/swagger-ui.php', 'swagger-ui');
 
         $this->commands([InstallCommand::class]);
     }
