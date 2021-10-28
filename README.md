@@ -4,7 +4,7 @@
 [![GitHub 'Run Tests' Workflow Status](https://img.shields.io/github/workflow/status/nextapps-be/laravel-swagger-ui/run-tests?label=tests&style=flat-square&logo=github)](https://github.com/nextapps-be/laravel-swagger-ui/actions?query=workflow%3Arun-tests)
 [![Total Downloads](https://img.shields.io/packagist/dt/nextapps/laravel-swagger-ui.svg?style=flat-square)](https://packagist.org/packages/nextapps/laravel-swagger-ui)
 
-This package makes it easy to make your project's Swagger (OpenAPI v3 JSON) file accessible in a Swagger UI right in your Laravel application.
+This package makes it easy to make your project's Swagger (OpenAPI v3 JSON or YAML) file accessible in a Swagger UI right in your Laravel application.
 
 The Swagger UI will automatically use your current project environment. It will set your api's base url to the active base url. Possible oauth2 configuration, such as urls and client-id/client-secret, can also be injected in Swagger UI via the configuration file.
 
@@ -44,7 +44,7 @@ protected function gate()
 }
 ```
 
-In the published `config/swagger-ui.php` file, you edit the path to the Swagger UI and the location of the Swagger (OpenAPI v3) file. By default, the package expects to find the OpenAPI json file in 'resources/swagger' directory.
+In the published `config/swagger-ui.php` file, you edit the path to the Swagger UI and the location of the Swagger (OpenAPI v3) file. By default, the package expects to find the OpenAPI file in 'resources/swagger' directory.
 
 ```php
 // in config/swagger-ui.php

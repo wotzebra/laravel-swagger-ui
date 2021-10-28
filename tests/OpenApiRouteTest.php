@@ -35,9 +35,21 @@ class OpenApiRouteTest extends TestCase
         return [SwaggerUiServiceProvider::class];
     }
 
-    /** @test */
-    public function it_sets_server_to_current_app_url()
+    public function openApiFileProvider() : array
     {
+        return [
+            'json file' => [__DIR__.'/testfiles/openapi.json'],
+            'yaml file' => [__DIR__.'/testfiles/openapi.yaml'],
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider openApiFileProvider
+     */
+    public function it_sets_server_to_current_app_url($openApiFile)
+    {
+        config()->set('swagger-ui.file', $openApiFile);
         config()->set('app.url', 'http://foo.bar');
 
         $this->get('swagger/openapi.json')
@@ -46,9 +58,13 @@ class OpenApiRouteTest extends TestCase
             ->assertJsonPath('servers.0.url', 'http://foo.bar');
     }
 
-    /** @test */
-    public function it_sets_oauth_urls_by_combining_configured_paths_with_current_app_url()
+    /**
+     * @test
+     * @dataProvider openApiFileProvider
+     */
+    public function it_sets_oauth_urls_by_combining_configured_paths_with_current_app_url($openApiFile)
     {
+        config()->set('swagger-ui.file', $openApiFile);
         config()->set('swagger-ui.oauth.token_path', 'this-is-token-path');
         config()->set('swagger-ui.oauth.refresh_path', 'this-is-refresh-path');
         config()->set('swagger-ui.oauth.authorization_path', 'this-is-authorization-path');
