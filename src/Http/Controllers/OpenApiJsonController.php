@@ -2,8 +2,8 @@
 
 namespace NextApps\SwaggerUi\Http\Controllers;
 
-use RuntimeException;
 use Illuminate\Support\Str;
+use RuntimeException;
 
 class OpenApiJsonController
 {
