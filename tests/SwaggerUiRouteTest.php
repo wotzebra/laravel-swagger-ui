@@ -9,11 +9,6 @@ use Orchestra\Testbench\TestCase;
 
 class SwaggerUiRouteTest extends TestCase
 {
-    /**
-     * Setup the test environment.
-     *
-     * @return void
-     */
     protected function setUp() : void
     {
         parent::setUp();
@@ -23,14 +18,7 @@ class SwaggerUiRouteTest extends TestCase
         Gate::define('viewSwaggerUI', fn (?Authenticatable $user) => true);
     }
 
-    /**
-     * Get the package providers.
-     *
-     * @param mixed $app
-     *
-     * @return array
-     */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app) : array
     {
         return [SwaggerUiServiceProvider::class];
     }

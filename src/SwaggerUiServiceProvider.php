@@ -10,10 +10,7 @@ use NextApps\SwaggerUi\Http\Middleware\EnsureUserIsAuthorized;
 
 class SwaggerUiServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     */
-    public function boot()
+    public function boot() : void
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'swagger-ui');
 
@@ -30,22 +27,14 @@ class SwaggerUiServiceProvider extends ServiceProvider
         $this->loadRoutes();
     }
 
-    /**
-     * Register the application services.
-     */
-    public function register()
+    public function register() : void
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/swagger-ui.php', 'swagger-ui');
 
         $this->commands([InstallCommand::class]);
     }
 
-    /**
-     * Load the Swagger UI routes.
-     *
-     * @return void
-     */
-    protected function loadRoutes()
+    protected function loadRoutes() : void
     {
         Route::middleware(['web', EnsureUserIsAuthorized::class])
             ->prefix(config('swagger-ui.path'))

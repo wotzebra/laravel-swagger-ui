@@ -2,19 +2,14 @@
 
 namespace NextApps\SwaggerUi\Http\Middleware;
 
+use Closure;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
 
 class EnsureUserIsAuthorized
 {
-    /**
-     * Ensures the user is authorized to visit Swagger UI.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function handle($request, $next)
+    public function handle(Request $request, Closure $next)
     {
         if (app()->environment('local')) {
             return $next($request);

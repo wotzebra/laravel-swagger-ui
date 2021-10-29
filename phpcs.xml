@@ -10,6 +10,8 @@
 
     <rule ref="Generic.Files.LineLength.TooLong">
         <exclude-pattern>*/**/tests</exclude-pattern>
+        <exclude-pattern>*/**/src/Console/InstallCommand.php</exclude-pattern>
+        <exclude-pattern>*/**/src/SwaggerUiServiceProvider.php</exclude-pattern>
     </rule>
 
     <rule ref="PSR1.Classes.ClassDeclaration.MultipleClasses">

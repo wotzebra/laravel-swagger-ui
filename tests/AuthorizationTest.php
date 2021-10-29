@@ -9,11 +9,6 @@ use Orchestra\Testbench\TestCase;
 
 class AuthorizationTest extends TestCase
 {
-    /**
-     * Setup the test environment.
-     *
-     * @return void
-     */
     protected function setUp() : void
     {
         parent::setUp();
@@ -21,14 +16,7 @@ class AuthorizationTest extends TestCase
         config()->set('swagger-ui.file', __DIR__ . '/testfiles/openapi.json');
     }
 
-    /**
-     * Get the package providers.
-     *
-     * @param mixed $app
-     *
-     * @return void
-     */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app) : array
     {
         return [SwaggerUiServiceProvider::class];
     }

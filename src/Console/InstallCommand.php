@@ -7,26 +7,11 @@ use Illuminate\Support\Str;
 
 class InstallCommand extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'swagger-ui:install';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Install all of the Swagger UI resources';
 
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
-    public function handle()
+    public function handle() : void
     {
         $this->comment('Publishing Swagger UI Service Provider...');
         $this->callSilent('vendor:publish', ['--tag' => 'swagger-ui-provider']);
@@ -39,12 +24,7 @@ class InstallCommand extends Command
         $this->info('Swagger UI scaffolding installed successfully.');
     }
 
-    /**
-     * Register the Swagger UI service provider in the application configuration file.
-     *
-     * @return void
-     */
-    protected function registerSwaggerUiServiceProvider()
+    protected function registerSwaggerUiServiceProvider() : void
     {
         $namespace = Str::replaceLast('\\', '', $this->laravel->getNamespace());
 
