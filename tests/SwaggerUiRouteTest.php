@@ -9,28 +9,16 @@ use Orchestra\Testbench\TestCase;
 
 class SwaggerUiRouteTest extends TestCase
 {
-    /**
-     * Setup the test environment.
-     *
-     * @return void
-     */
-    protected function setUp(): void
+    protected function setUp() : void
     {
         parent::setUp();
 
-        config()->set('swagger-ui.file', __DIR__.'/testfiles/openapi.json');
+        config()->set('swagger-ui.file', __DIR__ . '/testfiles/openapi.json');
 
         Gate::define('viewSwaggerUI', fn (?Authenticatable $user) => true);
     }
 
-    /**
-     * Get the package providers.
-     *
-     * @param mixed $app
-     *
-     * @return array
-     */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app) : array
     {
         return [SwaggerUiServiceProvider::class];
     }
@@ -43,7 +31,7 @@ class SwaggerUiRouteTest extends TestCase
 
         $this->get('swagger')
             ->assertStatus(200)
-            ->assertSee('url: \''.route('swagger-openapi-json', [], false).'\'', false);
+            ->assertSee('url: \'' . route('swagger-openapi-json', [], false) . '\'', false);
     }
 
     /** @test */

@@ -9,28 +9,16 @@ use Orchestra\Testbench\TestCase;
 
 class OpenApiRouteTest extends TestCase
 {
-    /**
-     * Setup the test environment.
-     *
-     * @return void
-     */
-    protected function setUp(): void
+    protected function setUp() : void
     {
         parent::setUp();
 
-        config()->set('swagger-ui.file', __DIR__.'/testfiles/openapi.json');
+        config()->set('swagger-ui.file', __DIR__ . '/testfiles/openapi.json');
 
         Gate::define('viewSwaggerUI', fn (?Authenticatable $user) => true);
     }
 
-    /**
-     * Get the package providers.
-     *
-     * @param mixed $app
-     *
-     * @return array
-     */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app) : array
     {
         return [SwaggerUiServiceProvider::class];
     }
@@ -38,8 +26,8 @@ class OpenApiRouteTest extends TestCase
     public function openApiFileProvider() : array
     {
         return [
-            'json file' => [__DIR__.'/testfiles/openapi.json'],
-            'yaml file' => [__DIR__.'/testfiles/openapi.yaml'],
+            'json file' => [__DIR__ . '/testfiles/openapi.json'],
+            'yaml file' => [__DIR__ . '/testfiles/openapi.yaml'],
         ];
     }
 

@@ -2,17 +2,13 @@
 
 namespace NextApps\SwaggerUi\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 use RuntimeException;
 
 class OpenApiJsonController
 {
-    /**
-     * Get, prepare and return the OpenAPI / Swagger JSON file.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function __invoke()
+    public function __invoke() : JsonResponse
     {
         $json = $this->getJson();
 
@@ -22,12 +18,7 @@ class OpenApiJsonController
         return response()->json($json);
     }
 
-    /**
-     * Get the OpenAPI json.
-     *
-     * @return array
-     */
-    protected function getJson()
+    protected function getJson() : array
     {
         $path = config('swagger-ui.file');
 
@@ -42,14 +33,7 @@ class OpenApiJsonController
         return json_decode(file_get_contents($path), true);
     }
 
-    /**
-     * Configure the server in OpenAPI JSON, based on current environment.
-     *
-     * @param array $json
-     *
-     * @return array
-     */
-    protected function configureServer(array $json)
+    protected function configureServer(array $json) : array
     {
         $json['servers'] = [
             ['url' => config('app.url')],
@@ -58,20 +42,13 @@ class OpenApiJsonController
         return $json;
     }
 
-    /**
-     * Configure the oauth token url.
-     *
-     * @param array $json
-     *
-     * @return array
-     */
-    protected function configureOAuth(array $json)
+    protected function configureOAuth(array $json) : array
     {
         if (empty($json['components']['securitySchemes'])) {
             return $json;
         }
 
-        $json['components']['securitySchemes'] = collect($json['components']['securitySchemes'])->map(function ($scheme) {
+        $securitySchemes = collect($json['components']['securitySchemes'])->map(function ($scheme) {
             if ($scheme['type'] !== 'oauth2') {
                 return $scheme;
             }
@@ -94,6 +71,8 @@ class OpenApiJsonController
 
             return $scheme;
         });
+
+        $json['components']['securitySchemes'] = $securitySchemes->toArray();
 
         return $json;
     }
