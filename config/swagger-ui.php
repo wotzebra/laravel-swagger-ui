@@ -15,6 +15,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Swagger UI - Mode
+    |--------------------------------------------------------------------------
+    |
+    | Choose how Swagger UI should access your OpenAPI. You can enter
+    | a direct url or path to your file on disk
+    |
+    | Supported: "file", "url"
+    |
+    */
+
+    'mode' => env('SWAGGER_UI_MODE', 'file'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Swagger UI - OpenAPI File
     |--------------------------------------------------------------------------
     |
@@ -23,7 +37,19 @@ return [
     |
     */
 
-    'file' => resource_path('swagger/openapi.json'),
+    'file' => env('SWAGGER_UI_OPENAPI_FILE', resource_path('swagger/openapi.json')),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Swagger UI - OpenAPI Url
+    |--------------------------------------------------------------------------
+    |
+    | This is the location of the project's OpenAPI / Swagger JSON url. It's
+    | this url that will be used in Swagger UI.
+    |
+    */
+
+    'url' => env('SWAGGER_UI_OPENAPI_URL', url('openapi.json')),
 
     /*
     |--------------------------------------------------------------------------
