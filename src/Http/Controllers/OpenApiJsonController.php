@@ -36,10 +36,12 @@ class OpenApiJsonController
     protected function configureServer(array $json) : array
     {
         if(!isset($json['servers'])) {
-            $json['servers'] = [
-                ['url' => config('app.url')],
-            ];
+            return $json;
         }
+
+        $json['servers'] = [
+            ['url' => config('app.url')],
+        ];
 
         return $json;
     }
@@ -47,6 +49,10 @@ class OpenApiJsonController
     protected function configureOAuth(array $json) : array
     {
         if (empty($json['components']['securitySchemes'])) {
+            return $json;
+        }
+
+        if(!empty($json['components']['securitySchemes']) && filter_var(config('swagger-ui.file'), FILTER_VALIDATE_URL)) {
             return $json;
         }
 
