@@ -19,11 +19,12 @@ return [
     |--------------------------------------------------------------------------
     |
     | This is the location of the project's OpenAPI / Swagger JSON file. It's
-    | this file that will be used in Swagger UI.
+    | this file that will be used in Swagger UI. You can also enter
+    | a direct url to your OpenAPI.
     |
     */
 
-    'file' => resource_path('swagger/openapi.json'),
+    'file' => env('SWAGGER_UI_OPENAPI_FILE', resource_path('swagger/openapi.json')),
 
     /*
     |--------------------------------------------------------------------------

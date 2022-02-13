@@ -35,9 +35,11 @@ class OpenApiJsonController
 
     protected function configureServer(array $json) : array
     {
-        $json['servers'] = [
-            ['url' => config('app.url')],
-        ];
+        if(!isset($json['servers'])) {
+            $json['servers'] = [
+                ['url' => config('app.url')],
+            ];
+        }
 
         return $json;
     }
