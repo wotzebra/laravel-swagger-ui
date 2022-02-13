@@ -35,7 +35,7 @@ class OpenApiJsonController
 
     protected function configureServer(array $json) : array
     {
-        if(!isset($json['servers'])) {
+        if(isset($json['servers'])) {
             return $json;
         }
 
