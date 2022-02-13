@@ -1,8 +1,8 @@
 <?php
 
+use AdamWojs\PhpCsFixerPhpdocForceFQCN\Fixer\Phpdoc\ForceFQCNFixer;
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
-use AdamWojs\PhpCsFixerPhpdocForceFQCN\Fixer\Phpdoc\ForceFQCNFixer;
 
 $rules = [
     '@PSR2' => true,
@@ -195,7 +195,7 @@ $finder = Finder::create()
 
 return (new Config())
     ->registerCustomFixers([
-        new ForceFQCNFixer()
+        new ForceFQCNFixer(),
     ])
     ->setRules($rules)
     ->setFinder($finder);
