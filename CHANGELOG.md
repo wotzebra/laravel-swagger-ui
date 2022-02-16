@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-swagger-ui` will be documented in this file
 
+## 0.4.0 - 2022-02-16
+
+ - Added: PHP 8.1 and Laravel 9 support ([#10](https://github.com/nextapps-be/laravel-swagger-ui/pull/10))
+
 ## 0.3.0 - 2021-10-03
 
  - Added: Support for OpenAPI YAML files ([#6](https://github.com/nextapps-be/laravel-swagger-ui/pull/6))
