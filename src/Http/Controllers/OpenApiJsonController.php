@@ -6,10 +6,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 use RuntimeException;
 
-class OpenApiJsonController
-{
-    public function __invoke() : JsonResponse
-    {
+class OpenApiJsonController {
+    public function __invoke(): JsonResponse {
         $json = $this->getJson();
 
         $json = $this->configureServer($json);
@@ -18,24 +16,25 @@ class OpenApiJsonController
         return response()->json($json);
     }
 
-    protected function getJson() : array
-    {
+    protected function getJson(): array {
         $path = config('swagger-ui.file');
 
-        if (!filter_var($path, FILTER_VALIDATE_URL) && Str::endsWith($path, '.yaml')) {
-            if (! extension_loaded('yaml')) {
+        if (Str::endsWith($path, '.yaml')) {
+            if (!extension_loaded('yaml')) {
                 throw new RuntimeException('OpenAPI YAML file can not be parsed if the YAML extension is not loaded');
             }
 
+            if (filter_var($path, FILTER_VALIDATE_URL)) {
+                return yaml_parse(file_get_contents($path));
+            }
             return yaml_parse_file($path);
         }
 
         return json_decode(file_get_contents($path), true);
     }
 
-    protected function configureServer(array $json) : array
-    {
-        if(isset($json['servers'])) {
+    protected function configureServer(array $json): array {
+        if ((bool) config('swagger-ui.modify_file')) {
             return $json;
         }
 
@@ -46,13 +45,8 @@ class OpenApiJsonController
         return $json;
     }
 
-    protected function configureOAuth(array $json) : array
-    {
-        if (empty($json['components']['securitySchemes'])) {
-            return $json;
-        }
-
-        if(!empty($json['components']['securitySchemes']) && filter_var(config('swagger-ui.file'), FILTER_VALIDATE_URL)) {
+    protected function configureOAuth(array $json): array {
+        if (empty($json['components']['securitySchemes']) || (bool) config('swagger-ui.modify_file')) {
             return $json;
         }
 

@@ -8,10 +8,8 @@ use NextApps\SwaggerUi\Console\InstallCommand;
 use NextApps\SwaggerUi\Http\Controllers\OpenApiJsonController;
 use NextApps\SwaggerUi\Http\Middleware\EnsureUserIsAuthorized;
 
-class SwaggerUiServiceProvider extends ServiceProvider
-{
-    public function boot() : void
-    {
+class SwaggerUiServiceProvider extends ServiceProvider {
+    public function boot(): void {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'swagger-ui');
 
         if ($this->app->runningInConsole()) {
@@ -27,15 +25,13 @@ class SwaggerUiServiceProvider extends ServiceProvider
         $this->loadRoutes();
     }
 
-    public function register() : void
-    {
+    public function register(): void {
         $this->mergeConfigFrom(__DIR__ . '/../config/swagger-ui.php', 'swagger-ui');
 
         $this->commands([InstallCommand::class]);
     }
 
-    protected function loadRoutes() : void
-    {
+    protected function loadRoutes(): void {
         Route::middleware(['web', EnsureUserIsAuthorized::class])
             ->prefix(config('swagger-ui.path'))
             ->group(function () {

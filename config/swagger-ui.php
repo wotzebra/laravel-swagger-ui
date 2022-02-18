@@ -11,7 +11,7 @@ return [
     |
     */
 
-    'path' => 'swagger',
+    'path' => env('SWAGGER_UI_OPENAPI_PATH', 'swagger'),
 
     /*
     |--------------------------------------------------------------------------
@@ -25,6 +25,18 @@ return [
     */
 
     'file' => env('SWAGGER_UI_OPENAPI_FILE', resource_path('swagger/openapi.json')),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Swagger UI - Modify File
+    |--------------------------------------------------------------------------
+    |
+    | This option allows you to change the servers and securitySchemes url
+    | in the external OpenAPI / Swagger JSON file.
+    |
+    */
+
+    'modify_file' => env('SWAGGER_UI_OPENAPI_MODIFY_FILE', false),
 
     /*
     |--------------------------------------------------------------------------
