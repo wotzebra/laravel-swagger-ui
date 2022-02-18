@@ -34,7 +34,7 @@ class OpenApiJsonController {
     }
 
     protected function configureServer(array $json): array {
-        if ((bool) config('swagger-ui.modify_file')) {
+        if ((bool) !config('swagger-ui.modify_file')) {
             return $json;
         }
 
@@ -46,7 +46,7 @@ class OpenApiJsonController {
     }
 
     protected function configureOAuth(array $json): array {
-        if (empty($json['components']['securitySchemes']) || (bool) config('swagger-ui.modify_file')) {
+        if (empty($json['components']['securitySchemes']) || (bool) !config('swagger-ui.modify_file')) {
             return $json;
         }
 
