@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Gate;
 use NextApps\SwaggerUi\SwaggerUiServiceProvider;
 use Orchestra\Testbench\TestCase;
 
-class OpenApiRouteTest extends TestCase {
+class ExternalOpenApiTest extends TestCase {
     protected function setUp(): void {
         parent::setUp();
 
-        config()->set('swagger-ui.file', __DIR__ . '/testfiles/openapi.json');
+        config()->set('swagger-ui.file', 'https://raw.githubusercontent.com/nextapps-be/laravel-swagger-ui/master/tests/testfiles/openapi.json');
 
         Gate::define('viewSwaggerUI', fn (?Authenticatable $user) => true);
     }
@@ -22,8 +22,8 @@ class OpenApiRouteTest extends TestCase {
 
     public function openApiFileProvider(): array {
         return [
-            'json file' => [__DIR__ . '/testfiles/openapi.json'],
-            'yaml file' => [__DIR__ . '/testfiles/openapi.yaml'],
+            'json file' => ['https://raw.githubusercontent.com/nextapps-be/laravel-swagger-ui/master/tests/testfiles/openapi.json'],
+            'yaml file' => ['https://raw.githubusercontent.com/nextapps-be/laravel-swagger-ui/master/tests/testfiles/openapi.yaml'],
         ];
     }
 
