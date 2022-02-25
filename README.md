@@ -44,7 +44,7 @@ protected function gate()
 }
 ```
 
-In the published `config/swagger-ui.php` file, you edit the path to the Swagger UI and the location of the Swagger (OpenAPI v3) file. By default, the package expects to find the OpenAPI file in 'resources/swagger' directory. You can als provide an url if the OpenAPI file is not present in the Laravel project itself.
+In the published `config/swagger-ui.php` file, you edit the path to the Swagger UI and the location of the Swagger (OpenAPI v3) file. By default, the package expects to find the OpenAPI file in 'resources/swagger' directory. You can also provide an url if the OpenAPI file is not present in the Laravel project itself.
 
 ```php
 // in config/swagger-ui.php

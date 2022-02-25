@@ -26,10 +26,8 @@ class OpenApiRouteTest extends TestCase
     public function openApiFileProvider() : array
     {
         return [
-            'local json file' => [__DIR__ . '/testfiles/openapi.json'],
-            'local yaml file' => [__DIR__ . '/testfiles/openapi.yaml'],
-            'remote json file' => ['https://raw.githubusercontent.com/nextapps-be/laravel-swagger-ui/master/tests/testfiles/openapi.json'],
-            'remote yaml file' => ['https://raw.githubusercontent.com/nextapps-be/laravel-swagger-ui/master/tests/testfiles/openapi.yaml'],
+            'json file' => [__DIR__ . '/testfiles/openapi.json'],
+            'yaml file' => [__DIR__ . '/testfiles/openapi.yaml'],
         ];
     }
 
@@ -100,10 +98,10 @@ class OpenApiRouteTest extends TestCase
 
         $this->get('swagger/openapi.json')
             ->assertStatus(200)
-            ->assertJsonPath('components.securitySchemes.Foobar.flows.password.tokenUrl', 'http://localhost:3000/token')
-            ->assertJsonPath('components.securitySchemes.Foobar.flows.password.refreshUrl', 'http://localhost:3000/refresh')
-            ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.authorizationUrl', '')
-            ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.tokenUrl', '')
-            ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.refreshUrl', '');
+            ->assertJsonPath('components.securitySchemes.Foobar.flows.password.tokenUrl', 'http://localhost:3000/password/tokenUrl')
+            ->assertJsonPath('components.securitySchemes.Foobar.flows.password.refreshUrl', 'http://localhost:3000/password/refreshUrl')
+            ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.authorizationUrl', 'http://localhost:3000/authorizationCode/authorizationUrl')
+            ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.tokenUrl', 'http://localhost:3000/authorizationCode/tokenUrl')
+            ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.refreshUrl', 'http://localhost:3000/authorizationCode/refreshUrl');
     }
 }
