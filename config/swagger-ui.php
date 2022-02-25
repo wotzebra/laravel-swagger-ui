@@ -19,20 +19,21 @@ return [
     |--------------------------------------------------------------------------
     |
     | This is the location of the project's OpenAPI / Swagger JSON file. It's
-    | this file that will be used in Swagger UI. You can also enter
-    | a direct url to your OpenAPI.
+    | this file that will be used in Swagger UI. This can either be a local
+    | file or an url to a file.
     |
     */
 
-    'file' => env('SWAGGER_UI_OPENAPI_FILE', resource_path('swagger/openapi.json')),
+    'file' => resource_path('swagger/openapi.json'),
 
     /*
     |--------------------------------------------------------------------------
     | Swagger UI - Modify File
     |--------------------------------------------------------------------------
     |
-    | This option allows you to change the servers and securitySchemes url
-    | in the external OpenAPI / Swagger JSON file.
+    | If this option is enabled, then the file will be changed before it is
+    | used by Swagger UI. The server url and oauth urls will be changed to
+    | the base url of this Laravel application.
     |
     */
 

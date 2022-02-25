@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Gate;
 use NextApps\SwaggerUi\SwaggerUiServiceProvider;
 use Orchestra\Testbench\TestCase;
 
-class OpenApiRouteTest extends TestCase {
-    protected function setUp(): void {
+class OpenApiRouteTest extends TestCase
+{
+    protected function setUp() : void
+    {
         parent::setUp();
 
         config()->set('swagger-ui.file', __DIR__ . '/testfiles/openapi.json');
@@ -16,11 +18,13 @@ class OpenApiRouteTest extends TestCase {
         Gate::define('viewSwaggerUI', fn (?Authenticatable $user) => true);
     }
 
-    protected function getPackageProviders($app): array {
+    protected function getPackageProviders($app) : array
+    {
         return [SwaggerUiServiceProvider::class];
     }
 
-    public function openApiFileProvider(): array {
+    public function openApiFileProvider() : array
+    {
         return [
             'json file' => [__DIR__ . '/testfiles/openapi.json'],
             'yaml file' => [__DIR__ . '/testfiles/openapi.yaml'],
@@ -31,7 +35,8 @@ class OpenApiRouteTest extends TestCase {
      * @test
      * @dataProvider openApiFileProvider
      */
-    public function it_sets_server_to_current_app_url_if_modify_file_is_enabled($openApiFile) {
+    public function it_sets_server_to_current_app_url_if_modify_file_is_enabled($openApiFile)
+    {
         config()->set('swagger-ui.file', $openApiFile);
         config()->set('swagger-ui.modify_file', true);
         config()->set('app.url', 'http://foo.bar');
@@ -46,7 +51,8 @@ class OpenApiRouteTest extends TestCase {
      * @test
      * @dataProvider openApiFileProvider
      */
-    public function it_sets_oauth_urls_by_combining_configured_paths_with_current_app_url_if_modify_file_is_enabled($openApiFile) {
+    public function it_sets_oauth_urls_by_combining_configured_paths_with_current_app_url_if_modify_file_is_enabled($openApiFile)
+    {
         config()->set('swagger-ui.file', $openApiFile);
         config()->set('swagger-ui.modify_file', true);
         config()->set('swagger-ui.oauth.token_path', 'this-is-token-path');
@@ -66,7 +72,8 @@ class OpenApiRouteTest extends TestCase {
      * @test
      * @dataProvider openApiFileProvider
      */
-    public function it_doesnt_sets_server_to_current_app_url_if_modify_file_is_disabled($openApiFile) {
+    public function it_doesnt_sets_server_to_current_app_url_if_modify_file_is_disabled($openApiFile)
+    {
         config()->set('swagger-ui.file', $openApiFile);
         config()->set('swagger-ui.modify_file', false);
         config()->set('app.url', 'http://foo.bar');
@@ -81,7 +88,8 @@ class OpenApiRouteTest extends TestCase {
      * @test
      * @dataProvider openApiFileProvider
      */
-    public function it_doesnt_sets_oauth_urls_by_combining_configured_paths_with_current_app_url_if_modify_file_is_disabled($openApiFile) {
+    public function it_doesnt_sets_oauth_urls_by_combining_configured_paths_with_current_app_url_if_modify_file_is_disabled($openApiFile)
+    {
         config()->set('swagger-ui.file', $openApiFile);
         config()->set('swagger-ui.modify_file', false);
         config()->set('swagger-ui.oauth.token_path', 'this-is-token-path');
