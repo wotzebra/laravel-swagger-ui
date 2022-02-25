@@ -21,20 +21,25 @@ class OpenApiJsonController
     protected function getJson() : array
     {
         $path = config('swagger-ui.file');
+        $content = file_get_contents($path);
 
         if (Str::endsWith($path, '.yaml')) {
             if (! extension_loaded('yaml')) {
                 throw new RuntimeException('OpenAPI YAML file can not be parsed if the YAML extension is not loaded');
             }
 
-            return yaml_parse_file($path);
+            return yaml_parse($content);
         }
 
-        return json_decode(file_get_contents($path), true);
+        return json_decode($content, true);
     }
 
     protected function configureServer(array $json) : array
     {
+        if (! config('swagger-ui.modify_file')) {
+            return $json;
+        }
+
         $json['servers'] = [
             ['url' => config('app.url')],
         ];
@@ -44,7 +49,7 @@ class OpenApiJsonController
 
     protected function configureOAuth(array $json) : array
     {
-        if (empty($json['components']['securitySchemes'])) {
+        if (empty($json['components']['securitySchemes']) || ! config('swagger-ui.modify_file')) {
             return $json;
         }
 

@@ -26,7 +26,7 @@ php artisan swagger-ui:install
 
 The Swagger UI is exposed at `/swagger`. By default, you will only be able to access it in the local environment. Within your `app/Providers/SwaggerUiServiceProvider.php` file, there is a `gate` method. This authorization gate controls access to Swagger UI in non-local environments. You can modify this gate as needed to restrict access to your Swagger UI and Swagger (OpenAPI v3) file:
 
-``` php
+```php
 /**
  * Register the Swagger UI gate.
  *
@@ -44,7 +44,7 @@ protected function gate()
 }
 ```
 
-In the published `config/swagger-ui.php` file, you edit the path to the Swagger UI and the location of the Swagger (OpenAPI v3) file. By default, the package expects to find the OpenAPI file in 'resources/swagger' directory.
+In the published `config/swagger-ui.php` file, you edit the path to the Swagger UI and the location of the Swagger (OpenAPI v3) file. By default, the package expects to find the OpenAPI file in 'resources/swagger' directory. You can also provide an url if the OpenAPI file is not present in the Laravel project itself.
 
 ```php
 // in config/swagger-ui.php
@@ -60,8 +60,21 @@ return [
 ];
 ```
 
-You also have the option to customize the oauth setup. By default, the oauth paths are configured based on Laravel Passport.
-You can also set a client ID and client secret. These values will be automatically prefilled in the authentication view in Swagger UI.
+By default the package will customize the server url and the oauth urls in the OpenAPI file to the base url of the Laravel application. This can be disabled in the config.
+
+```php
+// in config/swagger-ui.php
+
+return [
+    // ...
+
+    'modify_file' => true,
+
+    // ...
+];
+```
+
+You can also set an oauth client ID and client secret. These values will be automatically prefilled in the authentication view in Swagger UI.
 
 ```php
 // in config/swagger-ui.php
@@ -84,7 +97,7 @@ return [
 
 ### Testing
 
-``` bash
+```bash
 composer test
 ```
 
@@ -93,7 +106,6 @@ composer test
 ```bash
 composer lint
 ```
-
 
 ### Changelog
 
@@ -109,8 +121,8 @@ If you discover any security related issues, please email gunther@nextapps.be in
 
 ## Credits
 
-- [Günther Debrauwer](https://github.com/gdebrauwer)
-- [All Contributors](../../contributors)
+-   [Günther Debrauwer](https://github.com/gdebrauwer)
+-   [All Contributors](../../contributors)
 
 ## License
 

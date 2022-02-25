@@ -65,14 +65,14 @@
         "type": "oauth2",
         "flows": {
           "password": {
-            "tokenUrl": "http://localhost:3000/token",
+            "tokenUrl": "http://localhost:3000/password/tokenUrl",
             "scopes": {},
-            "refreshUrl": "http://localhost:3000/refresh"
+            "refreshUrl": "http://localhost:3000/password/refreshUrl"
           },
           "authorizationCode": {
-            "authorizationUrl": "",
-            "tokenUrl": "",
-            "refreshUrl": "",
+            "authorizationUrl": "http://localhost:3000/authorizationCode/authorizationUrl",
+            "tokenUrl": "http://localhost:3000/authorizationCode/tokenUrl",
+            "refreshUrl": "http://localhost:3000/authorizationCode/refreshUrl",
             "scopes": {}
           }
         },

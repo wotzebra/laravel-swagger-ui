@@ -19,11 +19,25 @@ return [
     |--------------------------------------------------------------------------
     |
     | This is the location of the project's OpenAPI / Swagger JSON file. It's
-    | this file that will be used in Swagger UI.
+    | this file that will be used in Swagger UI. This can either be a local
+    | file or an url to a file.
     |
     */
 
     'file' => resource_path('swagger/openapi.json'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Swagger UI - Modify File
+    |--------------------------------------------------------------------------
+    |
+    | If this option is enabled, then the file will be changed before it is
+    | used by Swagger UI. The server url and oauth urls will be changed to
+    | the base url of this Laravel application.
+    |
+    */
+
+    'modify_file' => true,
 
     /*
     |--------------------------------------------------------------------------
