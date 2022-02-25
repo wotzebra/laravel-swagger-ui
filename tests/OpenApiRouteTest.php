@@ -26,8 +26,10 @@ class OpenApiRouteTest extends TestCase
     public function openApiFileProvider() : array
     {
         return [
-            'json file' => [__DIR__ . '/testfiles/openapi.json'],
-            'yaml file' => [__DIR__ . '/testfiles/openapi.yaml'],
+            'local json file' => [__DIR__ . '/testfiles/openapi.json'],
+            'local yaml file' => [__DIR__ . '/testfiles/openapi.yaml'],
+            'remote json file' => ['https://raw.githubusercontent.com/nextapps-be/laravel-swagger-ui/master/tests/testfiles/openapi.json'],
+            'remote yaml file' => ['https://raw.githubusercontent.com/nextapps-be/laravel-swagger-ui/master/tests/testfiles/openapi.yaml'],
         ];
     }
 

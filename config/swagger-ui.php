@@ -11,7 +11,7 @@ return [
     |
     */
 
-    'path' => env('SWAGGER_UI_OPENAPI_PATH', 'swagger'),
+    'path' => 'swagger',
 
     /*
     |--------------------------------------------------------------------------
@@ -37,7 +37,7 @@ return [
     |
     */
 
-    'modify_file' => env('SWAGGER_UI_OPENAPI_MODIFY_FILE', false),
+    'modify_file' => true,
 
     /*
     |--------------------------------------------------------------------------

@@ -44,7 +44,7 @@ protected function gate()
 }
 ```
 
-In the published `config/swagger-ui.php` file, you edit the path to the Swagger UI and the location of the Swagger (OpenAPI v3) file. By default, the package expects to find the OpenAPI file in 'resources/swagger' directory.
+In the published `config/swagger-ui.php` file, you edit the path to the Swagger UI and the location of the Swagger (OpenAPI v3) file. By default, the package expects to find the OpenAPI file in 'resources/swagger' directory. You can als provide an url if the OpenAPI file is not present in the Laravel project itself.
 
 ```php
 // in config/swagger-ui.php
@@ -54,14 +54,27 @@ return [
 
     'path' => 'swagger',
 
-    'file' => env('SWAGGER_UI_OPENAPI_FILE', resource_path('swagger/openapi.json')),
+    'file' => resource_path('swagger/openapi.json'),
 
     // ...
 ];
 ```
 
-You also have the option to customize the oauth setup. By default, the oauth paths are configured based on Laravel Passport.
-You can also set a client ID and client secret. These values will be automatically prefilled in the authentication view in Swagger UI.
+By default the package will customize the server url and the oauth urls in the OpenAPI file to the base url of the Laravel application. This can be disabled in the config.
+
+```php
+// in config/swagger-ui.php
+
+return [
+    // ...
+
+    'modify_file' => true,
+
+    // ...
+];
+```
+
+You can also set an oauth client ID and client secret. These values will be automatically prefilled in the authentication view in Swagger UI.
 
 ```php
 // in config/swagger-ui.php
