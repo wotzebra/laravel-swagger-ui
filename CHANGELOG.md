@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-swagger-ui` will be documented in this file
 
-## 0.5.0 - 2022-02-25
+## 0.5.0 - 2022-05-12
 
 - Added: Middleware array to config file.
 
