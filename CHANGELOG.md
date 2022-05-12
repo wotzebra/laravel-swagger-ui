@@ -4,6 +4,10 @@ All notable changes to `laravel-swagger-ui` will be documented in this file
 
 ## 0.5.0 - 2022-02-25
 
+- Added: Middleware array to config file.
+
+## 0.5.0 - 2022-02-25
+
  - Added: Support for external OpenAPI files ([#11](https://github.com/nextapps-be/laravel-swagger-ui/pull/11))
 
 ## 0.4.0 - 2022-02-16
