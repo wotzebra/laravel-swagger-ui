@@ -1,5 +1,7 @@
 <?php
 
+use NextApps\SwaggerUi\Http\Middleware\EnsureUserIsAuthorized;
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -12,6 +14,20 @@ return [
     */
 
     'path' => 'swagger',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Swagger UI - Route Middleware
+    |--------------------------------------------------------------------------
+    |
+    | These middleware will be assigned to every Swagger UI route.
+    |
+    */
+
+    'middleware' => [
+        'web',
+        EnsureUserIsAuthorized::class,
+    ],
 
     /*
     |--------------------------------------------------------------------------
