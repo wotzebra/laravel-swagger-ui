@@ -36,7 +36,7 @@ class SwaggerUiServiceProvider extends ServiceProvider
 
     protected function loadRoutes() : void
     {
-        Route::middleware(['web', EnsureUserIsAuthorized::class])
+        Route::middleware(config('swagger-ui.middleware', ['web', EnsureUserIsAuthorized::class]))
             ->prefix(config('swagger-ui.path'))
             ->group(function () {
                 Route::view('/', 'swagger-ui::index')->name('swagger-ui');
