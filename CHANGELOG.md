@@ -5,7 +5,7 @@ All notable changes to `laravel-swagger-ui` will be documented in this file
 ## 0.6.0 - 2023-02-15
 
  - Added: PHP 8.2 and Laravel 10 support ([#20](https://github.com/nextapps-be/laravel-swagger-ui/pull/20))
- - 
+ 
 ## 0.5.0 - 2022-05-12
 
 - Added: Middleware array to config file ([#14](https://github.com/nextapps-be/laravel-swagger-ui/pull/14))
