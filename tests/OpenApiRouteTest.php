@@ -33,6 +33,7 @@ class OpenApiRouteTest extends TestCase
 
     /**
      * @test
+     *
      * @dataProvider openApiFileProvider
      */
     public function it_sets_server_to_current_app_url_if_modify_file_is_enabled($openApiFile)
@@ -49,6 +50,7 @@ class OpenApiRouteTest extends TestCase
 
     /**
      * @test
+     *
      * @dataProvider openApiFileProvider
      */
     public function it_sets_oauth_urls_by_combining_configured_paths_with_current_app_url_if_modify_file_is_enabled($openApiFile)
@@ -70,6 +72,7 @@ class OpenApiRouteTest extends TestCase
 
     /**
      * @test
+     *
      * @dataProvider openApiFileProvider
      */
     public function it_doesnt_sets_server_to_current_app_url_if_modify_file_is_disabled($openApiFile)
@@ -86,6 +89,7 @@ class OpenApiRouteTest extends TestCase
 
     /**
      * @test
+     *
      * @dataProvider openApiFileProvider
      */
     public function it_doesnt_sets_oauth_urls_by_combining_configured_paths_with_current_app_url_if_modify_file_is_disabled($openApiFile)
