@@ -44,6 +44,7 @@ protected function gate()
 ```
 
 In the published `config/swagger-ui.php` file, you edit the path to the Swagger UI and the location of the Swagger (OpenAPI v3) file. By default, the package expects to find the OpenAPI file in 'resources/swagger' directory. You can also provide an url if the OpenAPI file is not present in the Laravel project itself.
+This is also where you can define multiple versions for the same api.
 
 ```php
 // in config/swagger-ui.php
@@ -53,7 +54,9 @@ return [
 
     'path' => 'swagger',
 
-    'file' => resource_path('swagger/openapi.json'),
+    'versions' => [
+        'v1' => resource_path('swagger/openapi.json')
+    ],
 
     // ...
 ];

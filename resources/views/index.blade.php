@@ -27,22 +27,32 @@
         <div id="swagger-ui"></div>
 
         <script src="https://unpkg.com/swagger-ui-dist@latest/swagger-ui-bundle.js"></script>
+        <script src="https://unpkg.com/swagger-ui-dist@latest/swagger-ui-standalone-preset.js"></script>
 
         <script>
             window.onload = function () {
                 window.ui = SwaggerUIBundle({
-                    url: '{{ route('swagger-openapi-json', [], false) }}',
+                    urls: [
+                        @foreach ($data['versions'] as $version => $path)
+                            {
+                                url: '{{ ltrim($data['path'], '/') . '/' . $version }}',
+                                name: '{{ $version }}',
+                            },
+                        @endforeach
+                    ],
+                    "urls.primaryName": "{{$data['default']}}",
                     dom_id: '#swagger-ui',
                     deepLinking: true,
                     presets: [
                         SwaggerUIBundle.presets.apis,
+                        SwaggerUIStandalonePreset
                     ],
-                    layout: 'BaseLayout',
+                    layout: 'StandaloneLayout',
                 });
 
                 ui.initOAuth({
-                    clientId: '{{ config('swagger-ui.oauth.client_id') }}',
-                    clientSecret: '{{ config('swagger-ui.oauth.client_secret') }}',
+                    clientId: '{{ $data['oauth']['client_id'] }}',
+                    clientSecret: '{{ $data['oauth']['client_secret'] }}',
                 });
             };
         </script>

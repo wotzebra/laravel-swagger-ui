@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use NextApps\SwaggerUi\Console\InstallCommand;
 use NextApps\SwaggerUi\Http\Controllers\OpenApiJsonController;
+use NextApps\SwaggerUi\Http\Controllers\SwaggerViewController;
 use NextApps\SwaggerUi\Http\Middleware\EnsureUserIsAuthorized;
 
 class SwaggerUiServiceProvider extends ServiceProvider
@@ -36,12 +37,13 @@ class SwaggerUiServiceProvider extends ServiceProvider
 
     protected function loadRoutes() : void
     {
-        Route::middleware(config('swagger-ui.middleware', ['web', EnsureUserIsAuthorized::class]))
-            ->prefix(config('swagger-ui.path'))
-            ->group(function () {
-                Route::view('/', 'swagger-ui::index')->name('swagger-ui');
+        collect(config('swagger-ui.files'))->each(function ($values) {
+            Route::middleware($values['middleware'] ?? ['web', EnsureUserIsAuthorized::class])
+                ->group(function () use ($values) {
+                    Route::get(ltrim($values['path'], '/'), SwaggerViewController::class);
 
-                Route::get('openapi.json', OpenApiJsonController::class)->name('swagger-openapi-json');
-            });
+                    Route::get('{path}/{filename}', OpenApiJsonController::class);
+                });
+        });
     }
 }

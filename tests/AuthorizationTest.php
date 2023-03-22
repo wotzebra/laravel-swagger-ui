@@ -1,11 +1,10 @@
 <?php
 
-namespace NextApps\SwaggerUi\Test;
+namespace NextApps\SwaggerUi\Tests;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Gate;
 use NextApps\SwaggerUi\SwaggerUiServiceProvider;
-use Orchestra\Testbench\TestCase;
 
 class AuthorizationTest extends TestCase
 {
@@ -13,7 +12,7 @@ class AuthorizationTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('swagger-ui.file', __DIR__ . '/testfiles/openapi.json');
+        config()->set('swagger-ui.files.0.versions', ['v1' => __DIR__ . '/testfiles/openapi.json']);
     }
 
     protected function getPackageProviders($app) : array
@@ -25,7 +24,7 @@ class AuthorizationTest extends TestCase
     public function it_denies_access_in_default_installation()
     {
         $this->get('swagger')->assertStatus(403);
-        $this->get('swagger/openapi.json')->assertStatus(403);
+        $this->get('swagger/v1')->assertStatus(403);
     }
 
     /** @test */
@@ -34,7 +33,7 @@ class AuthorizationTest extends TestCase
         $this->actingAs(new Authenticated());
 
         $this->get('swagger')->assertStatus(403);
-        $this->get('swagger/openapi.json')->assertStatus(403);
+        $this->get('swagger/v1')->assertStatus(403);
     }
 
     /** @test */
@@ -43,7 +42,7 @@ class AuthorizationTest extends TestCase
         Gate::define('viewSwaggerUI', fn () => true);
 
         $this->get('swagger')->assertStatus(403);
-        $this->get('swagger/openapi.json')->assertStatus(403);
+        $this->get('swagger/v1')->assertStatus(403);
     }
 
     /** @test */
@@ -56,7 +55,7 @@ class AuthorizationTest extends TestCase
         });
 
         $this->get('swagger')->assertStatus(200);
-        $this->get('swagger/openapi.json')->assertStatus(200);
+        $this->get('swagger/v1')->assertStatus(200);
     }
 
     /** @test */
@@ -67,7 +66,7 @@ class AuthorizationTest extends TestCase
         Gate::define('viewSwaggerUI', fn () => false);
 
         $this->get('swagger')->assertStatus(403);
-        $this->get('swagger/openapi.json')->assertStatus(403);
+        $this->get('swagger/v1')->assertStatus(403);
     }
 
     /** @test */
@@ -76,7 +75,7 @@ class AuthorizationTest extends TestCase
         Gate::define('viewSwaggerUI', fn (?Authenticated $user) => true);
 
         $this->get('swagger')->assertStatus(200);
-        $this->get('swagger/openapi.json')->assertStatus(200);
+        $this->get('swagger/v1')->assertStatus(200);
     }
 }
 
