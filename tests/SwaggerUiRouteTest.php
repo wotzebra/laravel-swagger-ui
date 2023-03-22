@@ -2,8 +2,8 @@
 
 namespace NextApps\SwaggerUi\Tests;
 
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\Gate;
 use NextApps\SwaggerUi\SwaggerUiServiceProvider;
 
 class SwaggerUiRouteTest extends TestCase

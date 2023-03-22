@@ -30,7 +30,7 @@ class OpenApiRouteTest extends TestCase
             'multiple versions' => [
                 'v1' => __DIR__ . '/testfiles/openapi.json',
                 'v2' => __DIR__ . '/testfiles/openapi.yaml',
-            ]
+            ],
         ];
     }
 
