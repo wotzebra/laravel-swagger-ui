@@ -31,6 +31,11 @@ return [
             ],
 
             /*
+             * If enabled the file will be modified to set the server url and oauth urls.
+             */
+            'modify_file' => true,
+
+            /*
              * The oauth configuration for the swagger file.
              */
             'oauth' => [
@@ -41,11 +46,6 @@ return [
                 'client_id' => env('SWAGGER_UI_OAUTH_CLIENT_ID'),
                 'client_secret' => env('SWAGGER_UI_OAUTH_CLIENT_SECRET'),
             ],
-
-            /*
-             * If enabled the file will be modified to set the server url and oauth urls.
-             */
-            'modify_file' => true,
         ],
     ],
 ];

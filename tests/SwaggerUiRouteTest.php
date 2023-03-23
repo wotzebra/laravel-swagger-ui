@@ -4,6 +4,7 @@ namespace NextApps\SwaggerUi\Tests;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Gate;
+use NextApps\SwaggerUi\Http\Middleware\EnsureUserIsAuthorized;
 use NextApps\SwaggerUi\SwaggerUiServiceProvider;
 
 class SwaggerUiRouteTest extends TestCase
@@ -28,7 +29,7 @@ class SwaggerUiRouteTest extends TestCase
     {
         $this->get('swagger')
             ->assertStatus(200)
-            ->assertSee('url: \'' . 'swagger/v1' . '\'', false);
+            ->assertSee('url: \'swagger/v1\'', false);
     }
 
     /** @test */
@@ -41,19 +42,19 @@ class SwaggerUiRouteTest extends TestCase
     }
 
     /** @test */
-    public function it_allows_multiple_routes()
-    {
-        $this->get('swagger2')
-            ->assertStatus(200)
-            ->assertSee('url: \'' . 'swagger2/v1' . '\'', false);
-    }
-
-    /** @test */
     public function it_supports_multiple_verions()
     {
         $this->get('swagger-with-versions')
             ->assertStatus(200)
-            ->assertSee('url: \'' . 'swagger-with-versions/v1' . '\'', false)
-            ->assertSee('url: \'' . 'swagger-with-versions/v2' . '\'', false);
+            ->assertSee('url: \'swagger-with-versions/v1\'', false)
+            ->assertSee('url: \'swagger-with-versions/v2\'', false);
+    }
+
+    /** @test */
+    public function it_applies_middleware_from_config()
+    {
+        $this->assertRouteUsesMiddleware('swagger.index', ['web', EnsureUserIsAuthorized::class]);
+
+        $this->assertRouteUsesMiddleware('swagger-with-versions.index', ['web']);
     }
 }

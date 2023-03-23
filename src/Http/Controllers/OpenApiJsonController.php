@@ -3,20 +3,19 @@
 namespace NextApps\SwaggerUi\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use RuntimeException;
 
 class OpenApiJsonController
 {
-    public function __invoke(string $path, string $filename) : JsonResponse
+    public function __invoke(Request $request, string $filename) : JsonResponse
     {
+        $path = $request->segment(1);
+
         $file = collect(config('swagger-ui.files'))->filter(function ($values) use ($filename, $path) {
             return isset($values['versions'][$filename]) && ltrim($values['path'], '/') === $path;
-        })->first();
-
-        if (empty($file)) {
-            abort(404);
-        }
+        })->firstOrFail();
 
         $json = $this->getJson($file['versions'][$filename]);
 

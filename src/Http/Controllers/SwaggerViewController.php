@@ -10,7 +10,7 @@ class SwaggerViewController
     {
         $file = collect(config('swagger-ui.files'))->filter(function ($values) use ($request) {
             return ltrim($values['path'], '/') === $request->path();
-        })->first();
+        })->firstOrFail();
 
         return view('swagger-ui::index', ['data' => collect($file)]);
     }

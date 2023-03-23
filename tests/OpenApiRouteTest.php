@@ -27,10 +27,6 @@ class OpenApiRouteTest extends TestCase
         return [
             'json file' => [__DIR__ . '/testfiles/openapi.json'],
             'yaml file' => [__DIR__ . '/testfiles/openapi.yaml'],
-            'multiple versions' => [
-                'v1' => __DIR__ . '/testfiles/openapi.json',
-                'v2' => __DIR__ . '/testfiles/openapi.yaml',
-            ],
         ];
     }
 
