@@ -104,4 +104,25 @@ class OpenApiRouteTest extends TestCase
             ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.tokenUrl', 'http://localhost:3000/authorizationCode/tokenUrl')
             ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.refreshUrl', 'http://localhost:3000/authorizationCode/refreshUrl');
     }
+
+    /** @test */
+    public function it_returns_not_found_response_if_provided_version_does_not_exist_in_file()
+    {
+        $this->getJson('swagger/v4')
+            ->assertStatus(404);
+    }
+
+    /** @test */
+    public function it_returns_not_found_response_if_provided_file_does_not_exist()
+    {
+        $this->getJson('foo-bar/v1')
+            ->assertStatus(404);
+    }
+
+    /** @test */
+    public function it_returns_not_found_response_if_provided_route_does_not_exist()
+    {
+        $this->getJson('foo-bar')
+            ->assertStatus(404);
+    }
 }

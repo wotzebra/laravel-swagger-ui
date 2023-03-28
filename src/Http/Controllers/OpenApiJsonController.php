@@ -2,8 +2,10 @@
 
 namespace NextApps\SwaggerUi\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\ItemNotFoundException;
 use Illuminate\Support\Str;
 use RuntimeException;
 
@@ -13,9 +15,13 @@ class OpenApiJsonController
     {
         $path = $request->segment(1);
 
-        $file = collect(config('swagger-ui.files'))->filter(function ($values) use ($filename, $path) {
-            return isset($values['versions'][$filename]) && ltrim($values['path'], '/') === $path;
-        })->firstOrFail();
+        try {
+            $file = collect(config('swagger-ui.files'))->filter(function ($values) use ($filename, $path) {
+                return isset($values['versions'][$filename]) && ltrim($values['path'], '/') === $path;
+            })->firstOrFail();
+        } catch (ItemNotFoundException $e) {
+            return abort(404);
+        }
 
         $json = $this->getJson($file['versions'][$filename]);
 
@@ -27,7 +33,11 @@ class OpenApiJsonController
 
     protected function getJson(string $path) : array
     {
-        $content = file_get_contents($path);
+        try {
+            $content = file_get_contents($path);
+        } catch (Exception $e) {
+            throw new RuntimeException('OpenAPI file can not be read');
+        }
 
         if (Str::endsWith($path, '.yaml')) {
             if (! extension_loaded('yaml')) {
