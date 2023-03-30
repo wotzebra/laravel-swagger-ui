@@ -3,73 +3,49 @@
 use NextApps\SwaggerUi\Http\Middleware\EnsureUserIsAuthorized;
 
 return [
-    /*
-    |--------------------------------------------------------------------------
-    | Swagger UI - Path
-    |--------------------------------------------------------------------------
-    |
-    | This is the URI path where SwaggerUI will be accessible from. Feel free
-    | to change this path to anything you like.
-    |
-    */
+    'files' => [
+        [
+            /*
+             * The path where the swagger file is served.
+             */
+            'path' => 'swagger',
 
-    'path' => 'swagger',
+            /*
+             * The versions of the swagger file. The key is the version name and the value is the path to the file.
+             */
+            'versions' => [
+                'v1' => resource_path('swagger/openapi.json'),
+            ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Swagger UI - Route Middleware
-    |--------------------------------------------------------------------------
-    |
-    | These middleware will be assigned to every Swagger UI route.
-    |
-    */
+            /*
+             * The default version that is loaded when the route is accessed.
+             */
+            'default' => 'v1',
 
-    'middleware' => [
-        'web',
-        EnsureUserIsAuthorized::class,
-    ],
+            /*
+             * The middleware that is applied to the route.
+             */
+            'middleware' => [
+                'web',
+                EnsureUserIsAuthorized::class,
+            ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Swagger UI - OpenAPI File
-    |--------------------------------------------------------------------------
-    |
-    | This is the location of the project's OpenAPI / Swagger JSON file. It's
-    | this file that will be used in Swagger UI. This can either be a local
-    | file or an url to a file.
-    |
-    */
+            /*
+             * If enabled the file will be modified to set the server url and oauth urls.
+             */
+            'modify_file' => true,
 
-    'file' => resource_path('swagger/openapi.json'),
+            /*
+             * The oauth configuration for the swagger file.
+             */
+            'oauth' => [
+                'token_path' => 'oauth/token',
+                'refresh_path' => 'oauth/token',
+                'authorization_path' => 'oauth/authorize',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Swagger UI - Modify File
-    |--------------------------------------------------------------------------
-    |
-    | If this option is enabled, then the file will be changed before it is
-    | used by Swagger UI. The server url and oauth urls will be changed to
-    | the base url of this Laravel application.
-    |
-    */
-
-    'modify_file' => true,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Swagger UI - OAuth Config
-    |--------------------------------------------------------------------------
-    |
-    | This allows you to configure oauth within Swagger UI. It makes it easier
-    | to authenticate in Swagger UI by prefilling certain values.
-    |
-    */
-    'oauth' => [
-        'token_path' => 'oauth/token',
-        'refresh_path' => 'oauth/token',
-        'authorization_path' => 'oauth/authorize',
-
-        'client_id' => env('SWAGGER_UI_OAUTH_CLIENT_ID'),
-        'client_secret' => env('SWAGGER_UI_OAUTH_CLIENT_SECRET'),
+                'client_id' => env('SWAGGER_UI_OAUTH_CLIENT_ID'),
+                'client_secret' => env('SWAGGER_UI_OAUTH_CLIENT_SECRET'),
+            ],
+        ],
     ],
 ];

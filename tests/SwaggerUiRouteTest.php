@@ -1,11 +1,11 @@
 <?php
 
-namespace NextApps\SwaggerUi\Test;
+namespace NextApps\SwaggerUi\Tests;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Gate;
+use NextApps\SwaggerUi\Http\Middleware\EnsureUserIsAuthorized;
 use NextApps\SwaggerUi\SwaggerUiServiceProvider;
-use Orchestra\Testbench\TestCase;
 
 class SwaggerUiRouteTest extends TestCase
 {
@@ -13,7 +13,8 @@ class SwaggerUiRouteTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('swagger-ui.file', __DIR__ . '/testfiles/openapi.json');
+        config()->set('swagger-ui.files.0.versions', ['v1' => __DIR__ . '/testfiles/openapi.json']);
+        config()->set('swagger-ui.files.0.oauth', ['client_id' => 1, 'client_secret' => 'foobar']);
 
         Gate::define('viewSwaggerUI', fn (?Authenticatable $user) => true);
     }
@@ -26,23 +27,34 @@ class SwaggerUiRouteTest extends TestCase
     /** @test */
     public function it_provides_openapi_route_as_url()
     {
-        config()->set('swagger-ui.oauth.client_id', 1);
-        config()->set('swagger-ui.oauth.client_secret', 'foobar');
-
         $this->get('swagger')
             ->assertStatus(200)
-            ->assertSee('url: \'' . route('swagger-openapi-json', [], false) . '\'', false);
+            ->assertSee('url: \'swagger/v1\'', false);
     }
 
     /** @test */
     public function it_fills_oauth_client_id_and_secret_from_config()
     {
-        config()->set('swagger-ui.oauth.client_id', 1);
-        config()->set('swagger-ui.oauth.client_secret', 'foobar');
-
         $this->get('swagger')
             ->assertStatus(200)
             ->assertSee('clientId: \'1\',', false)
             ->assertSee('clientSecret: \'foobar\',', false);
+    }
+
+    /** @test */
+    public function it_supports_multiple_verions()
+    {
+        $this->get('swagger-with-versions')
+            ->assertStatus(200)
+            ->assertSee('url: \'swagger-with-versions/v1\'', false)
+            ->assertSee('url: \'swagger-with-versions/v2\'', false);
+    }
+
+    /** @test */
+    public function it_applies_middleware_from_config()
+    {
+        $this->assertRouteUsesMiddleware('swagger.index', ['web', EnsureUserIsAuthorized::class]);
+
+        $this->assertRouteUsesMiddleware('swagger-with-versions.index', ['web']);
     }
 }

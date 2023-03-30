@@ -2,26 +2,42 @@
 
 namespace NextApps\SwaggerUi\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\ItemNotFoundException;
 use Illuminate\Support\Str;
 use RuntimeException;
 
 class OpenApiJsonController
 {
-    public function __invoke() : JsonResponse
+    public function __invoke(Request $request, string $filename) : JsonResponse
     {
-        $json = $this->getJson();
+        $path = $request->segment(1);
 
-        $json = $this->configureServer($json);
-        $json = $this->configureOAuth($json);
+        try {
+            $file = collect(config('swagger-ui.files'))->filter(function ($values) use ($filename, $path) {
+                return isset($values['versions'][$filename]) && ltrim($values['path'], '/') === $path;
+            })->firstOrFail();
+        } catch (ItemNotFoundException) {
+            return abort(404);
+        }
+
+        $json = $this->getJson($file['versions'][$filename]);
+
+        $json = $this->configureServer($file, $json);
+        $json = $this->configureOAuth($file, $json);
 
         return response()->json($json);
     }
 
-    protected function getJson() : array
+    protected function getJson(string $path) : array
     {
-        $path = config('swagger-ui.file');
-        $content = file_get_contents($path);
+        try {
+            $content = file_get_contents($path);
+        } catch (Exception $e) {
+            throw new RuntimeException('OpenAPI file can not be read');
+        }
 
         if (Str::endsWith($path, '.yaml')) {
             if (! extension_loaded('yaml')) {
@@ -34,9 +50,9 @@ class OpenApiJsonController
         return json_decode($content, true);
     }
 
-    protected function configureServer(array $json) : array
+    protected function configureServer(array $file, array $json) : array
     {
-        if (! config('swagger-ui.modify_file')) {
+        if (! $file['modify_file']) {
             return $json;
         }
 
@@ -47,28 +63,28 @@ class OpenApiJsonController
         return $json;
     }
 
-    protected function configureOAuth(array $json) : array
+    protected function configureOAuth(array $file, array $json) : array
     {
-        if (empty($json['components']['securitySchemes']) || ! config('swagger-ui.modify_file')) {
+        if (empty($json['components']['securitySchemes']) || ! $file['modify_file']) {
             return $json;
         }
 
-        $securitySchemes = collect($json['components']['securitySchemes'])->map(function ($scheme) {
+        $securitySchemes = collect($json['components']['securitySchemes'])->map(function ($scheme) use ($file) {
             if ($scheme['type'] !== 'oauth2') {
                 return $scheme;
             }
 
-            $scheme['flows'] = collect($scheme['flows'])->map(function ($flow) {
+            $scheme['flows'] = collect($scheme['flows'])->map(function ($flow) use ($file) {
                 if (isset($flow['tokenUrl'])) {
-                    $flow['tokenUrl'] = url(config('swagger-ui.oauth.token_path'));
+                    $flow['tokenUrl'] = url($file['oauth']['token_path']);
                 }
 
                 if (isset($flow['refreshUrl'])) {
-                    $flow['refreshUrl'] = url(config('swagger-ui.oauth.refresh_path'));
+                    $flow['refreshUrl'] = url($file['oauth']['refresh_path']);
                 }
 
                 if (isset($flow['authorizationUrl'])) {
-                    $flow['authorizationUrl'] = url(config('swagger-ui.oauth.authorization_path'));
+                    $flow['authorizationUrl'] = url($file['oauth']['authorization_path']);
                 }
 
                 return $flow;
