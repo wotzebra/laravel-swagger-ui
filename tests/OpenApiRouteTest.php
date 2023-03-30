@@ -113,7 +113,7 @@ class OpenApiRouteTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_not_found_response_if_provided_file_does_not_exist()
+    public function it_returns_not_found_response_if_provided_file_does_not_exist_even_when_provided_version_exists()
     {
         $this->getJson('foo-bar/v1')
             ->assertStatus(404);

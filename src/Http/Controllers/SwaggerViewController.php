@@ -13,8 +13,8 @@ class SwaggerViewController
             $file = collect(config('swagger-ui.files'))->filter(function ($values) use ($request) {
                 return ltrim($values['path'], '/') === $request->path();
             })->firstOrFail();
-        } catch (ItemNotFoundException $e) {
-            return response()->json(['error' => 'File not found'], 404);
+        } catch (ItemNotFoundException) {
+            return abort(404);
         }
 
         return view('swagger-ui::index', ['data' => collect($file)]);

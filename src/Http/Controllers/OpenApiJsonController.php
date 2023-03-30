@@ -19,7 +19,7 @@ class OpenApiJsonController
             $file = collect(config('swagger-ui.files'))->filter(function ($values) use ($filename, $path) {
                 return isset($values['versions'][$filename]) && ltrim($values['path'], '/') === $path;
             })->firstOrFail();
-        } catch (ItemNotFoundException $e) {
+        } catch (ItemNotFoundException) {
             return abort(404);
         }
 
