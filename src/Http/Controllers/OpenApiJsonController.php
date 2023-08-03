@@ -13,7 +13,7 @@ class OpenApiJsonController
 {
     public function __invoke(Request $request, string $filename) : JsonResponse
     {
-        $path = $request->segment(1);
+        $path = implode('/', array_slice($request->segments(), 0, -1));
 
         try {
             $file = collect(config('swagger-ui.files'))->filter(function ($values) use ($filename, $path) {

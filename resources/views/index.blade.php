@@ -35,12 +35,12 @@
                     urls: [
                         @foreach ($data['versions'] as $version => $path)
                             {
-                                url: '{{ ltrim($data['path'], '/') . '/' . $version }}',
+                                url: '/{{ $data['path'] }}/{{ $version }}',
                                 name: '{{ $version }}',
                             },
                         @endforeach
                     ],
-                    "urls.primaryName": "{{$data['default']}}",
+                    "urls.primaryName": "{{ $data['default'] }}",
                     dom_id: '#swagger-ui',
                     deepLinking: true,
                     presets: [
