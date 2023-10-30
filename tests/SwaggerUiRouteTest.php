@@ -66,4 +66,19 @@ class SwaggerUiRouteTest extends TestCase
 
         $this->assertRouteUsesMiddleware('swagger-with-versions.index', ['web']);
     }
+
+    /** @test */
+    public function it_includes_content_of_custom_stylesheet()
+    {
+        file_put_contents(
+            $path = resource_path('custom-swagger-ui-styling.css'),
+            $content = '.foo .bar { background-color: red; }'
+        );
+
+        config()->set('swagger-ui.files.0.stylesheet', $path);
+
+        $this->get('swagger')
+            ->assertStatus(200)
+            ->assertSee("<style>{$content}</style>", false);
+    }
 }
