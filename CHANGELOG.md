@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-swagger-ui` will be documented in this file
 
+## 0.8.2 - 2023-10-30
+
+- Added: Config option to add CSS to customize swagger-ui ([#24](https://github.com/nextapps-be/laravel-swagger-ui/pull/24))
+
 ## 0.8.1 - 2023-10-30
 
 - Added: Allow base path to contain multiple segments ([#23](https://github.com/nextapps-be/laravel-swagger-ui/pull/23))
