@@ -2,9 +2,13 @@
 
 All notable changes to `laravel-swagger-ui` will be documented in this file
 
-## 0.7.1 - 2023-10-30
+## 0.8.1 - 2023-10-30
 
 - Added: Allow base path to contain multiple segments ([#23](https://github.com/nextapps-be/laravel-swagger-ui/pull/23))
+
+## 0.8.0 - 2023-03-30
+
+- Added: Support for multiple API versions and multiple swagger routes and files ([#21](https://github.com/nextapps-be/laravel-swagger-ui/pull/21))
 
 ## 0.7.0 - 2023-02-15
 
