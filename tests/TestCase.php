@@ -24,7 +24,7 @@ abstract class TestCase extends BaseTestCase
             'v1' => __DIR__ . '/testfiles/openapi.json',
             'v2' => __DIR__ . '/testfiles/openapi-v2.json',
         ]);
-        $app['config']->set('swagger-ui.files.2.path', 'sub-path/swagger-with-versions');
+        $app['config']->set('swagger-ui.files.2.path', 'path/with/multiple/segments/swagger-with-versions');
         $app['config']->set('swagger-ui.files.2.middleware', ['web']);
     }
 }

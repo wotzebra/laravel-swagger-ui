@@ -53,10 +53,10 @@ class SwaggerUiRouteTest extends TestCase
     /** @test */
     public function it_supports_multiple_versions_with_sub_path()
     {
-        $this->get('sub-path/swagger-with-versions')
+        $this->get('path/with/multiple/segments/swagger-with-versions')
             ->assertStatus(200)
-            ->assertSee('url: \'/sub-path/swagger-with-versions/v1\'', false)
-            ->assertSee('url: \'/sub-path/swagger-with-versions/v2\'', false);
+            ->assertSee('url: \'/path/with/multiple/segments/swagger-with-versions/v1\'', false)
+            ->assertSee('url: \'/path/with/multiple/segments/swagger-with-versions/v2\'', false);
     }
 
     /** @test */
