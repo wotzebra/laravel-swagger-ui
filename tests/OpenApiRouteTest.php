@@ -106,6 +106,13 @@ class OpenApiRouteTest extends TestCase
     }
 
     /** @test */
+    public function it_returns_if_provided_path_does_have_sub_paths()
+    {
+        $this->getJson('path/with/multiple/segments/swagger-with-versions/v1')
+            ->assertStatus(200);
+    }
+
+    /** @test */
     public function it_returns_not_found_response_if_provided_version_does_not_exist_in_file()
     {
         $this->getJson('swagger/v4')
