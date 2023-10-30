@@ -22,6 +22,12 @@
                 background: #fafafa;
             }
         </style>
+
+        @if (config('swagger-ui.stylesheet'))
+            <style>
+                {{ file_get_contents(config('swagger-ui.stylesheet')) }}
+            </style>
+        @endif
     </head>
     <body>
         <div id="swagger-ui"></div>

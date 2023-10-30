@@ -48,4 +48,10 @@ return [
             ],
         ],
     ],
+
+    /**
+     * Path to a custom stylesheet file if you want to customize the look and feel of swagger-ui.
+     * The content of the file will be read and added into a style-tag on the swagger-ui page.
+     */
+    'stylesheet' => null,
 ];
