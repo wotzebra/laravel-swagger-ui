@@ -23,10 +23,8 @@
             }
         </style>
 
-        @if (config('swagger-ui.stylesheet'))
-            <style>
-                {{ file_get_contents(config('swagger-ui.stylesheet')) }}
-            </style>
+        @if (! empty($data['stylesheet']))
+            <style>{{ file_get_contents($data['stylesheet']) }}</style>
         @endif
     </head>
     <body>

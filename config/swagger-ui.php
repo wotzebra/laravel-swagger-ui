@@ -46,12 +46,12 @@ return [
                 'client_id' => env('SWAGGER_UI_OAUTH_CLIENT_ID'),
                 'client_secret' => env('SWAGGER_UI_OAUTH_CLIENT_SECRET'),
             ],
+
+            /*
+             * Path to a custom stylesheet file if you want to customize the look and feel of swagger-ui.
+             * The content of the file will be read and added into a style-tag on the swagger-ui page.
+             */
+            'stylesheet' => null,
         ],
     ],
-
-    /**
-     * Path to a custom stylesheet file if you want to customize the look and feel of swagger-ui.
-     * The content of the file will be read and added into a style-tag on the swagger-ui page.
-     */
-    'stylesheet' => null,
 ];
