@@ -33,7 +33,7 @@ return [
             /*
              * Specify the validator URL. If no URL provided, validation will not run
              */
-            'validator_url' => env('SWAGGER_UI_VALIDATOR_URL', null),
+            'validator_url' => env('SWAGGER_UI_VALIDATOR_URL'),
 
             /*
              * If enabled the file will be modified to set the server url and oauth urls.
