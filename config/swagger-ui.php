@@ -31,7 +31,7 @@ return [
             ],
 
             /*
-             * Specify the validator URL. If no URL provided, validation will not run
+             * Specify the validator URL. Set to false to disable validation.
              */
             'validator_url' => env('SWAGGER_UI_VALIDATOR_URL'),
 

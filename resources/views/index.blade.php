@@ -52,7 +52,9 @@
                         SwaggerUIStandalonePreset
                     ],
                     layout: 'StandaloneLayout',
-                    validationUrl: {{  $data["validator_url"] ?: "https://validator.swagger.io/validator" }}
+                    @if (!is_null($data["validator_url"]))
+                        validatorUrl: '{{ $data["validator_url"] }}'
+                    @endif
                 });
 
                 ui.initOAuth({
