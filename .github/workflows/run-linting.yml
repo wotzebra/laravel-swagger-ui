@@ -35,5 +35,5 @@ jobs:
 
             - name: Execute linting
               run: |
-                PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --dry-run
+                vendor/bin/php-cs-fixer fix --dry-run
                 vendor/bin/phpcs --colors --report-full
