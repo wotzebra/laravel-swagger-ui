@@ -15,7 +15,7 @@ jobs:
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                php-version: 8.2
+                php-version: 8.3
 
             - name: Get Composer cache cirectory
               id: composer-cache
@@ -35,5 +35,5 @@ jobs:
 
             - name: Execute linting
               run: |
-                PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --dry-run
+                vendor/bin/php-cs-fixer fix --dry-run
                 vendor/bin/phpcs --colors --report-full
