@@ -31,6 +31,11 @@ return [
             ],
 
             /*
+             * Specify the validator URL. Set to false to disable validation.
+             */
+            'validator_url' => env('SWAGGER_UI_VALIDATOR_URL'),
+
+            /*
              * If enabled the file will be modified to set the server url and oauth urls.
              */
             'modify_file' => true,
