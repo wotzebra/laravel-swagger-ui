@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-swagger-ui` will be documented in this file
 
+## 0.9.0 - 2023-12-15
+
+- Added: PHP 8.3 support ([#25](https://github.com/nextapps-be/laravel-swagger-ui/pull/25))
+- Added: Config option to set validator url ([#27](https://github.com/nextapps-be/laravel-swagger-ui/pull/27))
+
 ## 0.8.2 - 2023-10-30
 
 - Added: Config option to add CSS to customize swagger-ui ([#24](https://github.com/nextapps-be/laravel-swagger-ui/pull/24))
@@ -17,7 +22,7 @@ All notable changes to `laravel-swagger-ui` will be documented in this file
 ## 0.7.0 - 2023-02-15
 
 - Added: PHP 8.2 and Laravel 10 support ([#20](https://github.com/nextapps-be/laravel-swagger-ui/pull/20))
- 
+
 ## 0.6.0 - 2022-05-12
 
 - Added: Middleware array to config file ([#14](https://github.com/nextapps-be/laravel-swagger-ui/pull/14))
