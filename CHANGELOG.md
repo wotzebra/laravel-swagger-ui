@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-swagger-ui` will be documented in this file
 
+## 0.9.1 - 2023-03-15
+
+- Added: Laravel 11 support ([#25](https://github.com/nextapps-be/laravel-swagger-ui/pull/30))
+
 ## 0.9.0 - 2023-12-15
 
 - Added: PHP 8.3 support ([#25](https://github.com/nextapps-be/laravel-swagger-ui/pull/25))
