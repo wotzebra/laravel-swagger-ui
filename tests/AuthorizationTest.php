@@ -93,6 +93,11 @@ class Authenticated implements Authenticatable
         return 'swagger-ui-test';
     }
 
+    public function getAuthPasswordName()
+    {
+        return 'password';
+    }
+
     public function getAuthPassword()
     {
         return 'secret';

@@ -22,7 +22,7 @@ class OpenApiRouteTest extends TestCase
         return [SwaggerUiServiceProvider::class];
     }
 
-    public function openApiFileProvider() : array
+    public static function openApiFileProvider() : array
     {
         return [
             'json file' => [__DIR__ . '/testfiles/openapi.json'],
