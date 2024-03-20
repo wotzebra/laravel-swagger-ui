@@ -39,7 +39,7 @@
                     urls: [
                         @foreach ($data['versions'] as $version => $path)
                             {
-                                url: '{{ url($data['path']) }}/{{ $version }}',
+                                url: '{{ url("{$data['path']}/{$version}") }}',
                                 name: '{{ $version }}',
                             },
                         @endforeach
