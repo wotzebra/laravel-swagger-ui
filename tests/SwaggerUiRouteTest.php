@@ -29,7 +29,7 @@ class SwaggerUiRouteTest extends TestCase
     {
         $this->get('swagger')
             ->assertStatus(200)
-            ->assertSee('url: \'/swagger/v1\'', false);
+            ->assertSee('url: \'http://localhost/swagger/v1\'', false);
     }
 
     /** @test */
@@ -46,8 +46,8 @@ class SwaggerUiRouteTest extends TestCase
     {
         $this->get('swagger-with-versions')
             ->assertStatus(200)
-            ->assertSee('url: \'/swagger-with-versions/v1\'', false)
-            ->assertSee('url: \'/swagger-with-versions/v2\'', false);
+            ->assertSee('url: \'http://localhost/swagger-with-versions/v1\'', false)
+            ->assertSee('url: \'http://localhost/swagger-with-versions/v2\'', false);
     }
 
     /** @test */
@@ -55,8 +55,8 @@ class SwaggerUiRouteTest extends TestCase
     {
         $this->get('path/with/multiple/segments/swagger-with-versions')
             ->assertStatus(200)
-            ->assertSee('url: \'/path/with/multiple/segments/swagger-with-versions/v1\'', false)
-            ->assertSee('url: \'/path/with/multiple/segments/swagger-with-versions/v2\'', false);
+            ->assertSee('url: \'http://localhost/path/with/multiple/segments/swagger-with-versions/v1\'', false)
+            ->assertSee('url: \'http://localhost/path/with/multiple/segments/swagger-with-versions/v2\'', false);
     }
 
     /** @test */
