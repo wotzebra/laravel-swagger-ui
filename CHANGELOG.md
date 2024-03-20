@@ -2,9 +2,13 @@
 
 All notable changes to `laravel-swagger-ui` will be documented in this file
 
-## 0.9.1 - 2023-03-15
+## 0.9.2 - 2024-03-20
 
-- Added: Laravel 11 support ([#25](https://github.com/nextapps-be/laravel-swagger-ui/pull/30))
+- Fixed: Use full url for swagger ui bundles urls ([#29](https://github.com/nextapps-be/laravel-swagger-ui/pull/29))
+
+## 0.9.1 - 2024-03-15
+
+- Added: Laravel 11 support ([#30](https://github.com/nextapps-be/laravel-swagger-ui/pull/30))
 
 ## 0.9.0 - 2023-12-15
 
