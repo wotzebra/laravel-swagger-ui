@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-swagger-ui` will be documented in this file
 
+## 0.10.0 - 2024-07-09
+
+- Added: Support swagger-ui's oauth2 redirect ([#32](https://github.com/nextapps-be/laravel-swagger-ui/pull/32))
+
 ## 0.9.2 - 2024-03-20
 
 - Fixed: Use full url for swagger ui bundles urls ([#29](https://github.com/nextapps-be/laravel-swagger-ui/pull/29))
