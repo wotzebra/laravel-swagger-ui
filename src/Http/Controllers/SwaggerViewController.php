@@ -4,10 +4,11 @@ namespace NextApps\SwaggerUi\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\ItemNotFoundException;
+use Illuminate\View\View;
 
 class SwaggerViewController
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request) : View
     {
         try {
             $file = collect(config('swagger-ui.files'))->filter(function ($values) use ($request) {

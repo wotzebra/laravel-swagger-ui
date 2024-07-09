@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use NextApps\SwaggerUi\Console\InstallCommand;
 use NextApps\SwaggerUi\Http\Controllers\OpenApiJsonController;
+use NextApps\SwaggerUi\Http\Controllers\SwaggerOAuth2RedirectController;
 use NextApps\SwaggerUi\Http\Controllers\SwaggerViewController;
 
 class SwaggerUiServiceProvider extends ServiceProvider
@@ -40,7 +41,7 @@ class SwaggerUiServiceProvider extends ServiceProvider
             Route::middleware($values['middleware'])
                 ->group(function () use ($values) {
                     Route::get($values['path'], SwaggerViewController::class)->name($values['path'] . '.index');
-
+                    Route::get($values['path'] . '/oauth2-redirect', SwaggerOAuth2RedirectController::class)->name($values['path'] . '.oauth2-redirect');
                     Route::get($values['path'] . '/{filename}', OpenApiJsonController::class)->name($values['path'] . '.json');
                 });
         });
