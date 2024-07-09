@@ -53,8 +53,9 @@
                     ],
                     layout: 'StandaloneLayout',
                     @if (!is_null($data["validator_url"]))
-                        validatorUrl: '{{ $data["validator_url"] }}'
+                        validatorUrl: '{{ $data["validator_url"] }}',
                     @endif
+                    oauth2RedirectUrl: '{{ url("{$data['path']}/oauth2-redirect") }}',
                 });
 
                 ui.initOAuth({
