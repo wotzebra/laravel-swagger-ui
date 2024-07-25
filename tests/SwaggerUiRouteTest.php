@@ -81,4 +81,14 @@ class SwaggerUiRouteTest extends TestCase
             ->assertStatus(200)
             ->assertSee("<style>{$content}</style>", false);
     }
+
+    /** @test */
+    public function it_sets_page_title()
+    {
+        config()->set('swagger-ui.files.0.title', $title = $this->faker->sentence());
+
+        $this->get('swagger')
+            ->assertStatus(200)
+            ->assertSee("<title>{$title}</title>", false);
+    }
 }
