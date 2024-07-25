@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-swagger-ui` will be documented in this file
 
+## 0.10.1 - 2024-07-25
+
+- Added: Option to set page title ([#33](https://github.com/nextapps-be/laravel-swagger-ui/pull/33))
+
 ## 0.10.0 - 2024-07-09
 
 - Added: Support swagger-ui's oauth2 redirect ([#32](https://github.com/nextapps-be/laravel-swagger-ui/pull/32))
