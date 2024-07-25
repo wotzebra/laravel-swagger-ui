@@ -2,12 +2,14 @@
 
 namespace NextApps\SwaggerUi\Tests;
 
+use Illuminate\Foundation\Testing\WithFaker;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
-    use AdditionalAssertions;
+    use AdditionalAssertions,
+        WithFaker;
 
     protected function defineEnvironment($app)
     {

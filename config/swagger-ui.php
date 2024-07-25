@@ -11,6 +11,11 @@ return [
             'path' => 'swagger',
 
             /*
+             * The title of the page where the swagger file is served.
+             */
+            'title' => env('APP_NAME') . ' - Swagger',
+
+            /*
              * The versions of the swagger file. The key is the version name and the value is the path to the file.
              */
             'versions' => [
