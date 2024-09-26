@@ -1,11 +1,11 @@
 <?php
 
-namespace NextApps\SwaggerUi\Tests;
+namespace Wotz\SwaggerUi\Tests;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Http;
-use NextApps\SwaggerUi\SwaggerUiServiceProvider;
+use Wotz\SwaggerUi\SwaggerUiServiceProvider;
 
 class SwaggerOAuth2RedirectRouteTest extends TestCase
 {

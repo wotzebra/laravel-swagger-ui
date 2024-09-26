@@ -1,6 +1,6 @@
 <?php
 
-namespace NextApps\SwaggerUi\Console;
+namespace Wotz\SwaggerUi\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;

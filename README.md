@@ -1,7 +1,7 @@
 # Laravel Swagger UI
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/nextapps/laravel-swagger-ui.svg?style=flat-square)](https://packagist.org/packages/nextapps/laravel-swagger-ui)
-[![Total Downloads](https://img.shields.io/packagist/dt/nextapps/laravel-swagger-ui.svg?style=flat-square)](https://packagist.org/packages/nextapps/laravel-swagger-ui)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/wotz/laravel-swagger-ui.svg?style=flat-square)](https://packagist.org/packages/wotz/laravel-swagger-ui)
+[![Total Downloads](https://img.shields.io/packagist/dt/wotz/laravel-swagger-ui.svg?style=flat-square)](https://packagist.org/packages/wotz/laravel-swagger-ui)
 
 This package makes it easy to make your project's Swagger (OpenAPI v3 JSON or YAML) file accessible in a Swagger UI right in your Laravel application.
 
@@ -12,7 +12,7 @@ The Swagger UI will automatically use your current project environment. It will 
 You can install the package via composer:
 
 ```bash
-composer require nextapps/laravel-swagger-ui
+composer require wotz/laravel-swagger-ui
 ```
 
 After installing Laravel Swagger UI, publish its service provider and configuration file using the `swagger-ui:install` Artisan command.
@@ -119,7 +119,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ### Security
 
-If you discover any security related issues, please email gunther@nextapps.be instead of using the issue tracker.
+If you discover any security related issues, please email gunther@wotz.be instead of using the issue tracker.
 
 ## Credits
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace NextApps\SwaggerUi;
+namespace Wotz\SwaggerUi;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use NextApps\SwaggerUi\Console\InstallCommand;
-use NextApps\SwaggerUi\Http\Controllers\OpenApiJsonController;
-use NextApps\SwaggerUi\Http\Controllers\SwaggerOAuth2RedirectController;
-use NextApps\SwaggerUi\Http\Controllers\SwaggerViewController;
+use Wotz\SwaggerUi\Console\InstallCommand;
+use Wotz\SwaggerUi\Http\Controllers\OpenApiJsonController;
+use Wotz\SwaggerUi\Http\Controllers\SwaggerOAuth2RedirectController;
+use Wotz\SwaggerUi\Http\Controllers\SwaggerViewController;
 
 class SwaggerUiServiceProvider extends ServiceProvider
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace NextApps\SwaggerUi\Http\Middleware;
+namespace Wotz\SwaggerUi\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;

@@ -1,11 +1,11 @@
 <?php
 
-namespace NextApps\SwaggerUi\Tests;
+namespace Wotz\SwaggerUi\Tests;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Gate;
-use NextApps\SwaggerUi\Http\Middleware\EnsureUserIsAuthorized;
-use NextApps\SwaggerUi\SwaggerUiServiceProvider;
+use Wotz\SwaggerUi\Http\Middleware\EnsureUserIsAuthorized;
+use Wotz\SwaggerUi\SwaggerUiServiceProvider;
 
 class SwaggerUiRouteTest extends TestCase
 {

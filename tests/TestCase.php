@@ -1,6 +1,6 @@
 <?php
 
-namespace NextApps\SwaggerUi\Tests;
+namespace Wotz\SwaggerUi\Tests;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use JMac\Testing\Traits\AdditionalAssertions;
