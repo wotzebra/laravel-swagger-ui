@@ -1,6 +1,6 @@
 <?php
 
-use NextApps\SwaggerUi\Http\Middleware\EnsureUserIsAuthorized;
+use Wotz\SwaggerUi\Http\Middleware\EnsureUserIsAuthorized;
 
 return [
     'files' => [
