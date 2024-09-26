@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-swagger-ui` will be documented in this file
 
+## 1.0.0 - 2024-09-26
+
+- Changed: Change namespace from 'NextApps' to 'Wotz' ([#36](https://github.com/wotzebra/laravel-swagger-ui/pull/36))
+
 ## 0.10.1 - 2024-07-25
 
 - Added: Option to set page title ([#33](https://github.com/wotzebra/laravel-swagger-ui/pull/33))
