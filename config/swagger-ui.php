@@ -51,6 +51,11 @@ return [
             'server_url' => env('APP_URL'),
 
             /*
+             * Append the version to the end of server url.
+             */
+            'append_version_to_server_url' => false,
+
+            /*
              * Server URL variables for the swagger file.
              */
             'server_variables' => [],

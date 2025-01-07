@@ -59,6 +59,29 @@ class OpenApiRouteTest extends TestCase
      *
      * @dataProvider openApiFileProvider
      */
+    public function it_appends_the_version_to_the_end_of_server_url_if_append_version_is_enabled($openApiFile)
+    {
+        if (Str::endsWith($openApiFile, '.yaml')) {
+            $this->markTestSkipped('Skipping YAML test as the YAML parser used does not support writing YAML files.');
+
+            return;
+        }
+
+        config()->set('swagger-ui.files.0.versions', ['v1' => $openApiFile]);
+        config()->set('swagger-ui.files.0.modify_file', true);
+        config()->set('swagger-ui.files.0.append_version_to_server_url', true);
+
+        $this->get('swagger/v1')
+            ->assertStatus(200)
+            ->assertJsonCount(1, 'servers')
+            ->assertJsonPath('servers.0.url', 'http://foo.bar/v1');
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider openApiFileProvider
+     */
     public function it_uses_a_custom_server_url_if_defined_in_config($openApiFile)
     {
         if (Str::endsWith($openApiFile, '.yaml')) {
