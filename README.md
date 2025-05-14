@@ -82,6 +82,22 @@ return [
 ];
 ```
 
+You can also set what variables that should be customizable for the server url in Swagger UI. Variable must be present with the same key (case-sensitive) in the url surrounded by curly brackets.
+
+```php
+// in config/swagger-ui.php
+
+return [
+    // ...
+    
+    'server_url' => 'http://foo.bar/{Language}/api',
+    
+    'server_variables' => ['Language' => ['default' => 'en']],
+    
+    // ...
+]
+```
+
 You can also set an oauth client ID and client secret. These values will be automatically prefilled in the authentication view in Swagger UI.
 
 ```php

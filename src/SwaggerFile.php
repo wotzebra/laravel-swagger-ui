@@ -82,7 +82,10 @@ class SwaggerFile
         }
 
         $json['servers'] = [
-            ['url' => $this->getConfig('server_url', config('app.url'))],
+            [
+                'url' => $this->getConfig('server_url', config('app.url')),
+                'variables' => $this->getConfig('server_variables', []),
+            ],
         ];
 
         return $json;

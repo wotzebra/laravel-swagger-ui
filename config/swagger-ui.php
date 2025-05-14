@@ -51,6 +51,11 @@ return [
             'server_url' => env('APP_URL'),
 
             /*
+             * Server URL variables for the swagger ui.
+             */
+            'server_variables' => [],
+
+            /*
              * The oauth configuration for the swagger file.
              */
             'oauth' => [
