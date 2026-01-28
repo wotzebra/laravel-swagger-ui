@@ -20,7 +20,7 @@
     "require": {
         "php": "^8.1|^8.2|^8.3|^8.4",
         "ext-json": "*",
-        "laravel/framework": "^9.0|^10.0|^11.0|^12.0"
+        "laravel/framework": "^10.0|^11.0|^12.0"
     },
     "suggest": {
         "ext-yaml": "*",
@@ -32,8 +32,8 @@
         "guzzlehttp/guzzle": "^7.5",
         "jasonmccreary/laravel-test-assertions": "^2.3",
         "laravel/mcp": "^0.5.3",
-        "orchestra/testbench": "^7.0|^8.0|^9.0|^10.0",
-        "phpunit/phpunit": "^9.5|^10.0|^11.5.3",
+        "orchestra/testbench": "^8.0|^9.0|^10.0",
+        "phpunit/phpunit": "^10.0|^11.5.3",
         "squizlabs/php_codesniffer": "^3.6"
     },
     "autoload": {
