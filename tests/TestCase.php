@@ -13,6 +13,8 @@ abstract class TestCase extends BaseTestCase
     use AdditionalAssertions,
         WithFaker;
 
+    public static $latestResponse;
+
     public function setUp() : void
     {
         parent::setUp();
