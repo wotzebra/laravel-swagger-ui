@@ -22,7 +22,7 @@
         }
       ],
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Get user by ID",
         "tags": [],
         "responses": {
           "200": {
@@ -37,6 +37,52 @@
           }
         },
         "operationId": "get-user-userId"
+      },
+      "put": {
+        "summary": "Update user by ID",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "put-user-userId"
+      }
+    },
+    "/booking/{bookingId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "bookingId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Get booking by ID",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Booking"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-booking-bookingId"
       }
     }
   },
@@ -58,6 +104,22 @@
           "id",
           "email"
         ]
+      },
+      "Booking": {
+        "title": "Booking Model Title",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "status"
+        ]
       }
     },
     "securitySchemes": {
@@ -78,6 +140,47 @@
         },
         "description": ""
       }
+    },
+    "parameters": {
+      "X-API-Version": {
+        "name": "X-API-Version",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Current API version."
+      },
+      "Accept-Language": {
+        "name": "Accept-Language",
+        "in": "header",
+        "schema": {
+          "type": "string"
+        },
+        "description": "Used to determine the user's language and to return content in that language."
+      },
+      "X-Timezone": {
+        "name": "X-Timezone",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "User's timezone name"
+      }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "Booking"
+    },
+    {
+      "name": "User"
+    }
+  ],
+  "security": [
+    {
+      "FooBar": []
+    }
+  ]
 }

@@ -4,10 +4,12 @@ namespace Wotz\SwaggerUi;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Mcp\Facades\Mcp;
 use Wotz\SwaggerUi\Console\InstallCommand;
 use Wotz\SwaggerUi\Http\Controllers\OpenApiJsonController;
 use Wotz\SwaggerUi\Http\Controllers\SwaggerOAuth2RedirectController;
 use Wotz\SwaggerUi\Http\Controllers\SwaggerViewController;
+use Wotz\SwaggerUi\Mcp\Servers\SwaggerServer;
 
 class SwaggerUiServiceProvider extends ServiceProvider
 {
@@ -45,5 +47,13 @@ class SwaggerUiServiceProvider extends ServiceProvider
                     Route::get($values['path'] . '/{filename}', OpenApiJsonController::class)->name($values['path'] . '.json');
                 });
         });
+
+        if (config('swagger-ui.mcp.enabled')) {
+            if (! class_exists(Mcp::class)) {
+                throw new \RuntimeException('The Laravel MCP package is required to use the MCP Server. Please install it via Composer: composer require laravel/mcp');
+            }
+
+            Mcp::web(config('swagger-ui.mcp.path'), SwaggerServer::class)->middleware(config('swagger-ui.mcp.middleware'));
+        }
     }
 }

@@ -23,6 +23,8 @@ php artisan swagger-ui:install
 
 ## Usage
 
+### Customize authentication and authorization
+
 The Swagger UI is exposed at `/swagger`. By default, you will only be able to access it in the local environment. Within your `app/Providers/SwaggerUiServiceProvider.php` file, there is a `gate` method. This authorization gate controls access to Swagger UI in non-local environments. You can modify this gate as needed to restrict access to your Swagger UI and Swagger (OpenAPI v3) file:
 
 ```php
@@ -43,6 +45,8 @@ protected function gate()
 }
 ```
 
+### Customize locations of Swagger (OpenAPI v3) files
+
 In the published `config/swagger-ui.php` file, you edit the path to the Swagger UI and the location of the Swagger (OpenAPI v3) file. By default, the package expects to find the OpenAPI file in 'resources/swagger' directory. You can also provide an url if the OpenAPI file is not present in the Laravel project itself.
 This is also where you can define multiple versions for the same api.
 
@@ -61,6 +65,8 @@ return [
     // ...
 ];
 ```
+
+### Customize modifications to Swagger (OpenAPI v3) files and SwaggerUI
 
 By default the package will customize the server url and the oauth urls in the OpenAPI file to the base url of the Laravel application. This can be disabled in the config.
 
@@ -96,6 +102,25 @@ return [
     // ...
 ];
 ```
+
+### Enable and configure MCP Server based on Swagger (OpenAPI v3) files
+
+If you want to use the mcp server that returns info about your swagger files, then you need to install the `laravel/mcp` composer package and enable the swagger server in the config:
+```php
+// in config/swagger-ui.php
+
+return [
+    // ...
+
+    'mcp' => [
+        'enabled' => true,
+    ],
+
+    // ...
+];
+```
+
+By default, the MCP server is protected by the `auth:api` middleware and the `viewSwaggerUI` gate. If you are using Laravel Passport, then you still have to enable the MCP OAuth routes by adding `Mcp::oauthRoutes()` to your codebase.
 
 ### Testing
 

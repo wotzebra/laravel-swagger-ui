@@ -8,7 +8,7 @@ use Wotz\SwaggerUi\SwaggerUiServiceProvider;
 
 class AuthorizationTest extends TestCase
 {
-    protected function setUp() : void
+    public function setUp() : void
     {
         parent::setUp();
 

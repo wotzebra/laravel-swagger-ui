@@ -23,13 +23,15 @@
         "laravel/framework": "^9.0|^10.0|^11.0|^12.0"
     },
     "suggest": {
-        "ext-yaml": "*"
+        "ext-yaml": "*",
+        "laravel/mcp": "Required to use the MCP Server (^0.5)."
     },
     "require-dev": {
         "adamwojs/php-cs-fixer-phpdoc-force-fqcn": "^2.0",
         "friendsofphp/php-cs-fixer": "^3.0",
         "guzzlehttp/guzzle": "^7.5",
         "jasonmccreary/laravel-test-assertions": "^2.3",
+        "laravel/mcp": "^0.5.3",
         "orchestra/testbench": "^7.0|^8.0|^9.0|^10.0",
         "phpunit/phpunit": "^9.5|^10.0|^11.5.3",
         "squizlabs/php_codesniffer": "^3.6"
