@@ -28,7 +28,7 @@ class ListSchemasTool extends Tool
             return Response::error('Swagger file not found.');
         }
 
-        return Response::structured($file->collect('components.schemas')->keys()->all());
+        return Response::structured(['schemas' => $file->collect('components.schemas')->keys()->all()]);
     }
 
     public function schema(JsonSchema $schema) : array

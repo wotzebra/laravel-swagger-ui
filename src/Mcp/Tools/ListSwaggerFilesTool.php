@@ -17,8 +17,8 @@ class ListSwaggerFilesTool extends Tool
         $files = collect(config('swagger-ui.files'))->map(fn ($file) => [
             'filename' => $file['path'],
             'versions' => array_keys($file['versions']),
-        ])->all();
+        ])->values()->all();
 
-        return Response::structured($files);
+        return Response::structured(['files' => $files]);
     }
 }

@@ -38,7 +38,7 @@ class ListEndpointsTool extends Tool
             })->values()->all();
         })->flatten(1)->values();
 
-        return Response::structured($endpoints->all());
+        return Response::structured(['endpoints' => $endpoints->all()]);
     }
 
     public function schema(JsonSchema $schema) : array

@@ -21,20 +21,22 @@ class ListEndpointsToolTest extends TestCase
             'filename' => 'swagger-with-versions',
             'version' => 'v1',
         ])->assertStructuredContent([
-            [
-                'path' => '/user/{userId}',
-                'title' => 'Get user by ID',
-                'method' => 'GET',
-            ],
-            [
-                'path' => '/user/{userId}',
-                'title' => 'Update user by ID',
-                'method' => 'PUT',
-            ],
-            [
-                'path' => '/booking/{bookingId}',
-                'title' => 'Get booking by ID',
-                'method' => 'GET',
+            'endpoints' => [
+                [
+                    'path' => '/user/{userId}',
+                    'title' => 'Get user by ID',
+                    'method' => 'GET',
+                ],
+                [
+                    'path' => '/user/{userId}',
+                    'title' => 'Update user by ID',
+                    'method' => 'PUT',
+                ],
+                [
+                    'path' => '/booking/{bookingId}',
+                    'title' => 'Get booking by ID',
+                    'method' => 'GET',
+                ],
             ],
         ]);
     }

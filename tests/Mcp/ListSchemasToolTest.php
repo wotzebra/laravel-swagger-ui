@@ -21,8 +21,10 @@ class ListSchemasToolTest extends TestCase
             'filename' => 'swagger-with-versions',
             'version' => 'v1',
         ])->assertStructuredContent([
-            'User',
-            'Booking',
+            'schemas' => [
+                'User',
+                'Booking',
+            ],
         ]);
     }
 

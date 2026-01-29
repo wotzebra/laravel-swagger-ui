@@ -19,13 +19,15 @@ class ListSwaggerFilesToolTest extends TestCase
     {
         SwaggerServer::tool(ListSwaggerFilesTool::class)
             ->assertStructuredContent([
-                [
-                    'filename' => 'swagger-with-versions',
-                    'versions' => ['v1', 'v2'],
-                ],
-                [
-                    'filename' => 'path/with/multiple/segments/swagger-with-versions',
-                    'versions' => ['v1', 'v2'],
+                'files' => [
+                    [
+                        'filename' => 'swagger-with-versions',
+                        'versions' => ['v1', 'v2'],
+                    ],
+                    [
+                        'filename' => 'path/with/multiple/segments/swagger-with-versions',
+                        'versions' => ['v1', 'v2'],
+                    ],
                 ],
             ]);
     }
