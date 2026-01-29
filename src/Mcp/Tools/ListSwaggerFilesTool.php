@@ -15,7 +15,7 @@ class ListSwaggerFilesTool extends Tool
     public function handle() : Response|ResponseFactory
     {
         $files = collect(config('swagger-ui.files'))->map(fn ($file) => [
-            'name' => $file['path'],
+            'filename' => $file['path'],
             'versions' => array_keys($file['versions']),
         ])->all();
 
