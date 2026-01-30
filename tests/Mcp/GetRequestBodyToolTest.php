@@ -3,6 +3,7 @@
 namespace Wotz\SwaggerUi\Tests\Mcp;
 
 use Laravel\Mcp\Server\McpServiceProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Wotz\SwaggerUi\Mcp\Servers\SwaggerServer;
 use Wotz\SwaggerUi\Mcp\Tools\GetRequestBodyTool;
 use Wotz\SwaggerUi\Tests\TestCase;
@@ -14,7 +15,7 @@ class GetRequestBodyToolTest extends TestCase
         return [McpServiceProvider::class];
     }
 
-    /** @test */
+    #[Test]
     public function it_retrieves_a_specific_request_body_for_a_valid_swagger_file()
     {
         SwaggerServer::tool(GetRequestBodyTool::class, [
@@ -34,7 +35,7 @@ class GetRequestBodyToolTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_error_for_nonexistent_request_body()
     {
         SwaggerServer::tool(GetRequestBodyTool::class, [
@@ -44,7 +45,7 @@ class GetRequestBodyToolTest extends TestCase
         ])->assertHasErrors(['Request body not found']);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_error_for_nonexistent_file()
     {
         SwaggerServer::tool(GetRequestBodyTool::class, [
@@ -54,7 +55,7 @@ class GetRequestBodyToolTest extends TestCase
         ])->assertHasErrors(['Swagger file not found']);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_error_for_invalid_version()
     {
         SwaggerServer::tool(GetRequestBodyTool::class, [

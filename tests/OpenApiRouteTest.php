@@ -5,6 +5,8 @@ namespace Wotz\SwaggerUi\Tests;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Wotz\SwaggerUi\SwaggerUiServiceProvider;
 
 class OpenApiRouteTest extends TestCase
@@ -31,11 +33,8 @@ class OpenApiRouteTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider openApiFileProvider
-     */
+    #[Test]
+    #[DataProvider('openApiFileProvider')]
     public function it_sets_server_to_current_app_url_if_modify_file_is_enabled($openApiFile)
     {
         if (Str::endsWith($openApiFile, '.yaml')) {
@@ -54,11 +53,8 @@ class OpenApiRouteTest extends TestCase
             ->assertJsonPath('servers.0.url', 'http://foo.bar');
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider openApiFileProvider
-     */
+    #[Test]
+    #[DataProvider('openApiFileProvider')]
     public function it_appends_the_version_to_the_end_of_server_url_if_append_version_is_enabled($openApiFile)
     {
         if (Str::endsWith($openApiFile, '.yaml')) {
@@ -77,11 +73,8 @@ class OpenApiRouteTest extends TestCase
             ->assertJsonPath('servers.0.url', 'http://foo.bar/v1');
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider openApiFileProvider
-     */
+    #[Test]
+    #[DataProvider('openApiFileProvider')]
     public function it_uses_a_custom_server_url_if_defined_in_config($openApiFile)
     {
         if (Str::endsWith($openApiFile, '.yaml')) {
@@ -100,11 +93,8 @@ class OpenApiRouteTest extends TestCase
             ->assertJsonPath('servers.0.url', 'http://foo.bar/api');
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider openApiFileProvider
-     */
+    #[Test]
+    #[DataProvider('openApiFileProvider')]
     public function is_uses_custom_server_variables_if_defined_in_config($openApiFile)
     {
         if (Str::endsWith($openApiFile, '.yaml')) {
@@ -126,11 +116,8 @@ class OpenApiRouteTest extends TestCase
             ->assertJsonPath('servers.0.variables.Language.default', 'en');
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider openApiFileProvider
-     */
+    #[Test]
+    #[DataProvider('openApiFileProvider')]
     public function it_sets_oauth_urls_by_combining_configured_paths_with_current_app_url_if_modify_file_is_enabled($openApiFile)
     {
         if (Str::endsWith($openApiFile, '.yaml')) {
@@ -152,11 +139,8 @@ class OpenApiRouteTest extends TestCase
             ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.refreshUrl', 'http://localhost/this-is-refresh-path');
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider openApiFileProvider
-     */
+    #[Test]
+    #[DataProvider('openApiFileProvider')]
     public function it_doesnt_sets_server_to_current_app_url_if_modify_file_is_disabled($openApiFile)
     {
         if (Str::endsWith($openApiFile, '.yaml')) {
@@ -176,11 +160,8 @@ class OpenApiRouteTest extends TestCase
             ->assertJsonPath('servers.0.url', 'http://localhost:3000');
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider openApiFileProvider
-     */
+    #[Test]
+    #[DataProvider('openApiFileProvider')]
     public function it_doesnt_sets_oauth_urls_by_combining_configured_paths_with_current_app_url_if_modify_file_is_disabled($openApiFile)
     {
         if (Str::endsWith($openApiFile, '.yaml')) {
@@ -202,28 +183,28 @@ class OpenApiRouteTest extends TestCase
             ->assertJsonPath('components.securitySchemes.Foobar.flows.authorizationCode.refreshUrl', 'http://localhost:3000/authorizationCode/refreshUrl');
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_if_provided_path_does_have_sub_paths()
     {
         $this->getJson('path/with/multiple/segments/swagger-with-versions/v1')
             ->assertStatus(200);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_not_found_response_if_provided_version_does_not_exist_in_file()
     {
         $this->getJson('swagger/v4')
             ->assertStatus(404);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_not_found_response_if_provided_file_does_not_exist_even_when_provided_version_exists()
     {
         $this->getJson('foo-bar/v1')
             ->assertStatus(404);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_not_found_response_if_provided_route_does_not_exist()
     {
         $this->getJson('foo-bar')

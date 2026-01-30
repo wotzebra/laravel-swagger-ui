@@ -3,6 +3,7 @@
 namespace Wotz\SwaggerUi\Tests\Mcp;
 
 use Laravel\Mcp\Server\McpServiceProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Wotz\SwaggerUi\Mcp\Servers\SwaggerServer;
 use Wotz\SwaggerUi\Mcp\Tools\ListSwaggerFilesTool;
 use Wotz\SwaggerUi\Tests\TestCase;
@@ -14,7 +15,7 @@ class ListSwaggerFilesToolTest extends TestCase
         return [McpServiceProvider::class];
     }
 
-    /** @test */
+    #[Test]
     public function it_lists_all_swagger_files_with_their_versions()
     {
         SwaggerServer::tool(ListSwaggerFilesTool::class)

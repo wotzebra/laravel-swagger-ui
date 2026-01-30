@@ -3,6 +3,7 @@
 namespace Wotz\SwaggerUi\Tests\Mcp;
 
 use Laravel\Mcp\Server\McpServiceProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Wotz\SwaggerUi\Mcp\Servers\SwaggerServer;
 use Wotz\SwaggerUi\Mcp\Tools\GetEndpointTool;
 use Wotz\SwaggerUi\Tests\TestCase;
@@ -14,7 +15,7 @@ class GetEndpointToolTest extends TestCase
         return [McpServiceProvider::class];
     }
 
-    /** @test */
+    #[Test]
     public function it_retrieves_a_specific_endpoint_for_a_valid_swagger_file()
     {
         SwaggerServer::tool(GetEndpointTool::class, [
@@ -41,7 +42,7 @@ class GetEndpointToolTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_retrieves_an_endpoint_with_different_http_method()
     {
         SwaggerServer::tool(GetEndpointTool::class, [
@@ -68,7 +69,7 @@ class GetEndpointToolTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_error_for_nonexistent_file()
     {
         SwaggerServer::tool(GetEndpointTool::class, [
@@ -79,7 +80,7 @@ class GetEndpointToolTest extends TestCase
         ])->assertHasErrors(['Swagger file not found']);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_error_for_invalid_version()
     {
         SwaggerServer::tool(GetEndpointTool::class, [
@@ -90,7 +91,7 @@ class GetEndpointToolTest extends TestCase
         ])->assertHasErrors(['Swagger file not found']);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_error_for_nonexistent_endpoint()
     {
         SwaggerServer::tool(GetEndpointTool::class, [
@@ -101,7 +102,7 @@ class GetEndpointToolTest extends TestCase
         ])->assertHasErrors(['Endpoint not found']);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_error_for_nonexistent_method_on_existing_path()
     {
         SwaggerServer::tool(GetEndpointTool::class, [

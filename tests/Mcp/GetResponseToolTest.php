@@ -3,6 +3,7 @@
 namespace Wotz\SwaggerUi\Tests\Mcp;
 
 use Laravel\Mcp\Server\McpServiceProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Wotz\SwaggerUi\Mcp\Servers\SwaggerServer;
 use Wotz\SwaggerUi\Mcp\Tools\GetResponseTool;
 use Wotz\SwaggerUi\Tests\TestCase;
@@ -14,7 +15,7 @@ class GetResponseToolTest extends TestCase
         return [McpServiceProvider::class];
     }
 
-    /** @test */
+    #[Test]
     public function it_retrieves_a_specific_response_for_a_valid_swagger_file()
     {
         SwaggerServer::tool(GetResponseTool::class, [
@@ -38,7 +39,7 @@ class GetResponseToolTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_error_for_nonexistent_response()
     {
         SwaggerServer::tool(GetResponseTool::class, [
@@ -48,7 +49,7 @@ class GetResponseToolTest extends TestCase
         ])->assertHasErrors(['Response not found']);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_error_for_nonexistent_file()
     {
         SwaggerServer::tool(GetResponseTool::class, [
@@ -58,7 +59,7 @@ class GetResponseToolTest extends TestCase
         ])->assertHasErrors(['Swagger file not found']);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_error_for_invalid_version()
     {
         SwaggerServer::tool(GetResponseTool::class, [
