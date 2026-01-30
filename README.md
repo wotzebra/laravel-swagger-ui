@@ -106,6 +106,7 @@ return [
 ### Enable and configure MCP Server based on Swagger (OpenAPI v3) files
 
 If you want to use the mcp server that returns info about your swagger files, then you need to install the `laravel/mcp` composer package and enable the swagger server in the config:
+
 ```php
 // in config/swagger-ui.php
 
@@ -120,7 +121,7 @@ return [
 ];
 ```
 
-By default, the MCP server is protected by the `auth:api` middleware and the `viewSwaggerUI` gate. If you are using Laravel Passport, then you still have to enable the MCP OAuth routes by adding `Mcp::oauthRoutes()` to your codebase.
+By default, the MCP server is protected by the `auth:api` middleware and the `viewSwaggerUI` gate. If you are using Laravel Passport, then you still have to enable the MCP OAuth routes by adding `Mcp::oauthRoutes()` and a Passport authorization view to your codebase.
 
 ### Testing
 
