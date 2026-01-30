@@ -168,6 +168,62 @@
         },
         "description": "User's timezone name"
       }
+    },
+    "responses": {
+      "NotFound": {
+        "description": "The specified resource was not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Unauthorized access",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "UserCreate": {
+        "description": "User creation request body",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        }
+      },
+      "BookingCreate": {
+        "description": "Booking creation request body",
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Booking"
+            }
+          }
+        }
+      }
     }
   },
   "tags": [
@@ -182,5 +238,9 @@
     {
       "FooBar": []
     }
-  ]
+  ],
+  "externalDocs": {
+    "description": "Some external docs",
+    "url": "https://example.com/external-docs"
+  }
 }

@@ -11,15 +11,16 @@ use Laravel\Mcp\Server\Tools\Annotations\IsReadOnly;
 use Wotz\SwaggerUi\SwaggerFile;
 
 #[IsReadOnly]
-class GetGeneralInfoTool extends Tool
+class GetResponseTool extends Tool
 {
-    protected string $description = 'Get general information of a Swagger/OpenAPI file';
+    protected string $description = 'Get detailed information about a specific reusable response definition within a Swagger/OpenAPI file';
 
     public function handle(Request $request) : Response|ResponseFactory
     {
         $request->validate([
             'filename' => 'required|string',
             'version' => 'required|string',
+            'response' => 'required|string',
         ]);
 
         $file = SwaggerFile::make($request->string('filename'), $request->string('version'));
@@ -28,16 +29,13 @@ class GetGeneralInfoTool extends Tool
             return Response::error('Swagger file not found.');
         }
 
-        return Response::structured([
-            'openapi' => $file->json('openapi'),
-            'info' => $file->json('info'),
-            'servers' => $file->json('servers'),
-            'components' => [
-                'securitySchemes' => $file->json('components.securitySchemes'),
-            ],
-            'security' => $file->json('security'),
-            'externalDocs' => $file->json('externalDocs'),
-        ]);
+        $response = $file->json('components.responses.' . $request->string('response'));
+
+        if ($response === null) {
+            return Response::error('Response not found.');
+        }
+
+        return Response::structured($response);
     }
 
     public function schema(JsonSchema $schema) : array
@@ -51,6 +49,10 @@ class GetGeneralInfoTool extends Tool
                 ->string()
                 ->required()
                 ->description('Version of the swagger file'),
+            'response' => $schema
+                ->string()
+                ->required()
+                ->description('Name of the reusable response to retrieve'),
         ];
     }
 }

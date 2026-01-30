@@ -11,9 +11,9 @@ use Laravel\Mcp\Server\Tools\Annotations\IsReadOnly;
 use Wotz\SwaggerUi\SwaggerFile;
 
 #[IsReadOnly]
-class GetGeneralInfoTool extends Tool
+class ListResponsesTool extends Tool
 {
-    protected string $description = 'Get general information of a Swagger/OpenAPI file';
+    protected string $description = 'List all reusable response definitions within a Swagger/OpenAPI file';
 
     public function handle(Request $request) : Response|ResponseFactory
     {
@@ -28,16 +28,7 @@ class GetGeneralInfoTool extends Tool
             return Response::error('Swagger file not found.');
         }
 
-        return Response::structured([
-            'openapi' => $file->json('openapi'),
-            'info' => $file->json('info'),
-            'servers' => $file->json('servers'),
-            'components' => [
-                'securitySchemes' => $file->json('components.securitySchemes'),
-            ],
-            'security' => $file->json('security'),
-            'externalDocs' => $file->json('externalDocs'),
-        ]);
+        return Response::structured(['responses' => $file->collect('components.responses')->keys()->all()]);
     }
 
     public function schema(JsonSchema $schema) : array

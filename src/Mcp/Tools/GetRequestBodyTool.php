@@ -11,15 +11,16 @@ use Laravel\Mcp\Server\Tools\Annotations\IsReadOnly;
 use Wotz\SwaggerUi\SwaggerFile;
 
 #[IsReadOnly]
-class GetGeneralInfoTool extends Tool
+class GetRequestBodyTool extends Tool
 {
-    protected string $description = 'Get general information of a Swagger/OpenAPI file';
+    protected string $description = 'Get detailed information about a specific reusable request body definition within a Swagger/OpenAPI file';
 
     public function handle(Request $request) : Response|ResponseFactory
     {
         $request->validate([
             'filename' => 'required|string',
             'version' => 'required|string',
+            'requestBody' => 'required|string',
         ]);
 
         $file = SwaggerFile::make($request->string('filename'), $request->string('version'));
@@ -28,16 +29,13 @@ class GetGeneralInfoTool extends Tool
             return Response::error('Swagger file not found.');
         }
 
-        return Response::structured([
-            'openapi' => $file->json('openapi'),
-            'info' => $file->json('info'),
-            'servers' => $file->json('servers'),
-            'components' => [
-                'securitySchemes' => $file->json('components.securitySchemes'),
-            ],
-            'security' => $file->json('security'),
-            'externalDocs' => $file->json('externalDocs'),
-        ]);
+        $requestBody = $file->json('components.requestBodies.' . $request->string('requestBody'));
+
+        if ($requestBody === null) {
+            return Response::error('Request body not found.');
+        }
+
+        return Response::structured($requestBody);
     }
 
     public function schema(JsonSchema $schema) : array
@@ -51,6 +49,10 @@ class GetGeneralInfoTool extends Tool
                 ->string()
                 ->required()
                 ->description('Version of the swagger file'),
+            'requestBody' => $schema
+                ->string()
+                ->required()
+                ->description('Name of the reusable request body to retrieve'),
         ];
     }
 }

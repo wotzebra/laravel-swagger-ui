@@ -25,6 +25,7 @@ class GetGeneralInfoToolTest extends TestCase
             'filename' => 'swagger-with-versions',
             'version' => 'v1',
         ])->assertStructuredContent([
+            'openapi' => '3.0.0',
             'info' => [
                 'title' => 'openapi',
                 'version' => '1.0',
@@ -59,6 +60,10 @@ class GetGeneralInfoToolTest extends TestCase
                 [
                     'FooBar' => [],
                 ],
+            ],
+            'externalDocs' => [
+                'description' => 'Some external docs',
+                'url' => 'https://example.com/external-docs',
             ],
         ]);
     }

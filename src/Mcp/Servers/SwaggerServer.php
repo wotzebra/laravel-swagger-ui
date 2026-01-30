@@ -5,9 +5,13 @@ namespace Wotz\SwaggerUi\Mcp\Servers;
 use Laravel\Mcp\Server;
 use Wotz\SwaggerUi\Mcp\Tools\GetEndpointTool;
 use Wotz\SwaggerUi\Mcp\Tools\GetGeneralInfoTool;
+use Wotz\SwaggerUi\Mcp\Tools\GetRequestBodyTool;
+use Wotz\SwaggerUi\Mcp\Tools\GetResponseTool;
 use Wotz\SwaggerUi\Mcp\Tools\GetSchemaTool;
 use Wotz\SwaggerUi\Mcp\Tools\ListEndpointsTool;
 use Wotz\SwaggerUi\Mcp\Tools\ListParametersTool;
+use Wotz\SwaggerUi\Mcp\Tools\ListRequestBodiesTool;
+use Wotz\SwaggerUi\Mcp\Tools\ListResponsesTool;
 use Wotz\SwaggerUi\Mcp\Tools\ListSchemasTool;
 use Wotz\SwaggerUi\Mcp\Tools\ListSwaggerFilesTool;
 
@@ -45,8 +49,12 @@ class SwaggerServer extends Server
         - **list-schemas**: Browse all available data models/schemas in a specific Swagger file
         - **get-schema**: Get detailed information about a specific schema in a specific Swagger file
 
-        ### Miscellaneous Discovery
+        ### Reusable Components Discovery
         - **list-parameters**: Browse all reusable parameters in a specific Swagger file
+        - **list-responses**: Browse all reusable response definitions in a specific Swagger file
+        - **get-response**: Get detailed information about a specific reusable response in a specific Swagger file
+        - **list-request-bodies**: Browse all reusable request body definitions in a specific Swagger file
+        - **get-request-body**: Get detailed information about a specific reusable request body in a specific Swagger file
 
         ## Tips for Best Results
 
@@ -61,6 +69,12 @@ class SwaggerServer extends Server
         GetGeneralInfoTool::class,
 
         ListParametersTool::class,
+
+        ListResponsesTool::class,
+        GetResponseTool::class,
+
+        ListRequestBodiesTool::class,
+        GetRequestBodyTool::class,
 
         ListEndpointsTool::class,
         GetEndpointTool::class,
