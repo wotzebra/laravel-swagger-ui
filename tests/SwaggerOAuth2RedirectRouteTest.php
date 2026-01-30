@@ -9,7 +9,7 @@ use Wotz\SwaggerUi\SwaggerUiServiceProvider;
 
 class SwaggerOAuth2RedirectRouteTest extends TestCase
 {
-    protected function setUp() : void
+    public function setUp() : void
     {
         parent::setUp();
 

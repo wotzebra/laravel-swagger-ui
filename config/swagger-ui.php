@@ -69,4 +69,24 @@ return [
             'stylesheet' => null,
         ],
     ],
+
+    'mcp' => [
+        /*
+         * Enable or disable the MCP server.
+         */
+        'enabled' => false,
+
+        /*
+         * The path where the swagger mcp server is served.
+         */
+        'path' => 'swagger-mcp',
+
+        /*
+         * The middleware that is applied to the swagger mcp server route.
+         */
+        'middleware' => [
+            'auth:api',
+            EnsureUserIsAuthorized::class,
+        ],
+    ],
 ];
