@@ -81,9 +81,15 @@ class SwaggerFile
             return $json;
         }
 
+        $serverUrl = $this->getConfig('server_url', config('app.url'));
+
+        if ($this->getConfig('append_version_to_server_url', false)) {
+            $serverUrl = rtrim($serverUrl, '/') . '/' . $this->version;
+        }
+
         $json['servers'] = [
             [
-                'url' => $this->getConfig('server_url', config('app.url')),
+                'url' => $serverUrl,
                 'variables' => $this->getConfig('server_variables', []),
             ],
         ];
