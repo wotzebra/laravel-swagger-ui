@@ -3,6 +3,7 @@
 namespace Wotz\SwaggerUi\Tests\Mcp;
 
 use Laravel\Mcp\Server\McpServiceProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Wotz\SwaggerUi\Mcp\Servers\SwaggerServer;
 use Wotz\SwaggerUi\Mcp\Tools\GetGeneralInfoTool;
 use Wotz\SwaggerUi\Tests\TestCase;
@@ -14,7 +15,7 @@ class GetGeneralInfoToolTest extends TestCase
         return [McpServiceProvider::class];
     }
 
-    /** @test */
+    #[Test]
     public function it_retrieves_general_info_for_a_valid_swagger_file()
     {
         config()->set('swagger-ui.files.1.modify_file', true);
@@ -69,7 +70,7 @@ class GetGeneralInfoToolTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_error_for_nonexistent_file()
     {
         SwaggerServer::tool(GetGeneralInfoTool::class, [
@@ -78,7 +79,7 @@ class GetGeneralInfoToolTest extends TestCase
         ])->assertHasErrors(['Swagger file not found']);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_error_for_invalid_version()
     {
         SwaggerServer::tool(GetGeneralInfoTool::class, [

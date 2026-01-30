@@ -3,6 +3,7 @@
 namespace Wotz\SwaggerUi\Tests\Mcp;
 
 use Laravel\Mcp\Server\McpServiceProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Wotz\SwaggerUi\Mcp\Servers\SwaggerServer;
 use Wotz\SwaggerUi\Mcp\Tools\GetSchemaTool;
 use Wotz\SwaggerUi\Tests\TestCase;
@@ -14,7 +15,7 @@ class GetSchemaToolTest extends TestCase
         return [McpServiceProvider::class];
     }
 
-    /** @test */
+    #[Test]
     public function it_retrieves_a_specific_schema_for_a_valid_swagger_file()
     {
         SwaggerServer::tool(GetSchemaTool::class, [
@@ -39,7 +40,7 @@ class GetSchemaToolTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_error_for_nonexistent_file()
     {
         SwaggerServer::tool(GetSchemaTool::class, [
@@ -49,7 +50,7 @@ class GetSchemaToolTest extends TestCase
         ])->assertHasErrors(['Swagger file not found']);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_error_for_invalid_version()
     {
         SwaggerServer::tool(GetSchemaTool::class, [
@@ -59,7 +60,7 @@ class GetSchemaToolTest extends TestCase
         ])->assertHasErrors(['Swagger file not found']);
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_error_for_nonexistent_schema()
     {
         SwaggerServer::tool(GetSchemaTool::class, [

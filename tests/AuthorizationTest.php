@@ -4,6 +4,7 @@ namespace Wotz\SwaggerUi\Tests;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Gate;
+use PHPUnit\Framework\Attributes\Test;
 use Wotz\SwaggerUi\SwaggerUiServiceProvider;
 
 class AuthorizationTest extends TestCase
@@ -20,14 +21,14 @@ class AuthorizationTest extends TestCase
         return [SwaggerUiServiceProvider::class];
     }
 
-    /** @test */
+    #[Test]
     public function it_denies_access_in_default_installation()
     {
         $this->get('swagger')->assertStatus(403);
         $this->get('swagger/v1')->assertStatus(403);
     }
 
-    /** @test */
+    #[Test]
     public function it_denies_access_in_default_installation_for_any_auth_user()
     {
         $this->actingAs(new Authenticated());
@@ -36,7 +37,7 @@ class AuthorizationTest extends TestCase
         $this->get('swagger/v1')->assertStatus(403);
     }
 
-    /** @test */
+    #[Test]
     public function it_denies_access_for_guests()
     {
         Gate::define('viewSwaggerUI', fn () => true);
@@ -45,7 +46,7 @@ class AuthorizationTest extends TestCase
         $this->get('swagger/v1')->assertStatus(403);
     }
 
-    /** @test */
+    #[Test]
     public function it_allows_access_to_user_if_allowed_by_gate()
     {
         $this->actingAs(new Authenticated());
@@ -58,7 +59,7 @@ class AuthorizationTest extends TestCase
         $this->get('swagger/v1')->assertStatus(200);
     }
 
-    /** @test */
+    #[Test]
     public function it_denies_access_to_user_if_not_allowed_by_gate()
     {
         $this->actingAs(new Authenticated());
@@ -69,7 +70,7 @@ class AuthorizationTest extends TestCase
         $this->get('swagger/v1')->assertStatus(403);
     }
 
-    /** @test */
+    #[Test]
     public function it_allows_access_to_guest_if_allowed_by_gate()
     {
         Gate::define('viewSwaggerUI', fn (?Authenticated $user) => true);

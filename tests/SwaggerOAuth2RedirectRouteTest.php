@@ -5,6 +5,7 @@ namespace Wotz\SwaggerUi\Tests;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Http;
+use PHPUnit\Framework\Attributes\Test;
 use Wotz\SwaggerUi\SwaggerUiServiceProvider;
 
 class SwaggerOAuth2RedirectRouteTest extends TestCase
@@ -24,7 +25,7 @@ class SwaggerOAuth2RedirectRouteTest extends TestCase
         return [SwaggerUiServiceProvider::class];
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_swagger_ui_oauth2_redirect_html_file_content()
     {
         Http::fake([

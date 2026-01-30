@@ -4,6 +4,7 @@ namespace Wotz\SwaggerUi\Tests;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Gate;
+use PHPUnit\Framework\Attributes\Test;
 use Wotz\SwaggerUi\Http\Middleware\EnsureUserIsAuthorized;
 use Wotz\SwaggerUi\SwaggerUiServiceProvider;
 
@@ -24,7 +25,7 @@ class SwaggerUiRouteTest extends TestCase
         return [SwaggerUiServiceProvider::class];
     }
 
-    /** @test */
+    #[Test]
     public function it_provides_openapi_route_as_url()
     {
         $this->get('swagger')
@@ -32,7 +33,7 @@ class SwaggerUiRouteTest extends TestCase
             ->assertSee('url: \'http://localhost/swagger/v1\'', false);
     }
 
-    /** @test */
+    #[Test]
     public function it_fills_oauth_client_id_and_secret_from_config()
     {
         $this->get('swagger')
@@ -41,7 +42,7 @@ class SwaggerUiRouteTest extends TestCase
             ->assertSee('clientSecret: \'foobar\',', false);
     }
 
-    /** @test */
+    #[Test]
     public function it_supports_multiple_versions()
     {
         $this->get('swagger-with-versions')
@@ -50,7 +51,7 @@ class SwaggerUiRouteTest extends TestCase
             ->assertSee('url: \'http://localhost/swagger-with-versions/v2\'', false);
     }
 
-    /** @test */
+    #[Test]
     public function it_supports_multiple_versions_with_sub_path()
     {
         $this->get('path/with/multiple/segments/swagger-with-versions')
@@ -59,7 +60,7 @@ class SwaggerUiRouteTest extends TestCase
             ->assertSee('url: \'http://localhost/path/with/multiple/segments/swagger-with-versions/v2\'', false);
     }
 
-    /** @test */
+    #[Test]
     public function it_applies_middleware_from_config()
     {
         $this->assertRouteUsesMiddleware('swagger.index', ['web', EnsureUserIsAuthorized::class]);
@@ -67,7 +68,7 @@ class SwaggerUiRouteTest extends TestCase
         $this->assertRouteUsesMiddleware('swagger-with-versions.index', ['web']);
     }
 
-    /** @test */
+    #[Test]
     public function it_includes_content_of_custom_stylesheet()
     {
         file_put_contents(
@@ -82,7 +83,7 @@ class SwaggerUiRouteTest extends TestCase
             ->assertSee("<style>{$content}</style>", false);
     }
 
-    /** @test */
+    #[Test]
     public function it_sets_page_title()
     {
         config()->set('swagger-ui.files.0.title', $title = $this->faker->sentence());
