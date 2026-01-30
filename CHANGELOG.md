@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-swagger-ui` will be documented in this file
 
+## 2.0.0 - 2026-01-30
+
+- Added: MCP Server ([#50](https://github.com/wotzebra/laravel-swagger-ui/pull/50))
+- Added: Allow setting url variables from config ([#48](https://github.com/wotzebra/laravel-swagger-ui/pull/48))
+- Added: Option to append version to the end of server url ([#40](https://github.com/wotzebra/laravel-swagger-ui/pull/40))
+- Removed: PHP 8.1 and PHP 8.2 support ([#51](https://github.com/wotzebra/laravel-swagger-ui/pull/51))
+- Removed: Laravel 9 and Laravel 10 support ([#51](https://github.com/wotzebra/laravel-swagger-ui/pull/51))
+
 ## 1.2.0 - 2025-03-05
 
 - Added: Laravel v12 support ([#42](https://github.com/wotzebra/laravel-swagger-ui/pull/42))
