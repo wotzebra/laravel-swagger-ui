@@ -89,11 +89,11 @@ You can also set what variables that should be customizable for the server url i
 
 return [
     // ...
-    
+
     'server_url' => 'http://foo.bar/{Language}/api',
-    
+
     'server_variables' => ['Language' => ['default' => 'en']],
-    
+
     // ...
 ]
 ```

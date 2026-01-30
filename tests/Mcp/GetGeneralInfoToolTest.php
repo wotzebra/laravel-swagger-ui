@@ -33,6 +33,7 @@ class GetGeneralInfoToolTest extends TestCase
             'servers' => [
                 [
                     'url' => 'http://foo.bar/api',
+                    'variables' => [],
                 ],
             ],
             'components' => [

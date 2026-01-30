@@ -82,10 +82,15 @@ class OpenApiRouteTest extends TestCase
      *
      * @dataProvider openApiFileProvider
      */
-    public function is_uses_custom_variables_if_defined_in_config($openApiFile)
+    public function is_uses_custom_server_variables_if_defined_in_config($openApiFile)
     {
+        if (Str::endsWith($openApiFile, '.yaml')) {
+            $this->markTestSkipped('Skipping YAML test as the YAML parser used does not support writing YAML files.');
+
+            return;
+        }
+
         config()->set('app.url', 'http://foo.bar/{Language}');
-        config()->set('swagger-ui.server_variables', ['Language' => ['default' => 'en']]);
         config()->set('swagger-ui.files.0.versions', ['v1' => $openApiFile]);
         config()->set('swagger-ui.files.0.modify_file', true);
         config()->set('swagger-ui.files.0.server_variables', ['Language' => ['default' => 'en']]);

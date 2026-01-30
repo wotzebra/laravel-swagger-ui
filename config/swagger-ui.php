@@ -51,7 +51,7 @@ return [
             'server_url' => env('APP_URL'),
 
             /*
-             * Server URL variables for the swagger ui.
+             * Server URL variables for the swagger file.
              */
             'server_variables' => [],
 
