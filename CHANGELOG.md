@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-swagger-ui` will be documented in this file
 
+## 2.0.1 - 2026-02-25
+
+- Added: Support for laravel/mcp 0.6.x ([fcb134a](https://github.com/wotzebra/laravel-swagger-ui/commit/fcb134a27343fac6fddec9e0c491f518b061f803))
+
 ## 2.0.0 - 2026-01-30
 
 - Added: MCP Server ([#50](https://github.com/wotzebra/laravel-swagger-ui/pull/50))
