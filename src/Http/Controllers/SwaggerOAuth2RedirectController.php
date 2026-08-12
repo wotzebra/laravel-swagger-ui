@@ -6,16 +6,14 @@ use Illuminate\Support\Facades\Http;
 
 class SwaggerOAuth2RedirectController
 {
-    public function __invoke(): string
+    public function __invoke() : string
     {
         $html = Http::get('https://unpkg.com/swagger-ui-dist@latest/oauth2-redirect.html')->body();
 
-        $html = str_replace(
+        return str_replace(
             'src="oauth2-redirect.js"',
             'src="https://unpkg.com/swagger-ui-dist@latest/oauth2-redirect.js"',
             $html
         );
-
-        return $html;
     }
 }
