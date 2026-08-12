@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-swagger-ui` will be documented in this file
 
+## 2.1.1 - 2026-08-12
+
+- Fixed: Reference to javascript file in oauth2 redirect html file ([#55](https://github.com/wotzebra/laravel-swagger-ui/pull/55))
+
 ## 2.1.0 - 2026-03-18
 
 - Added: Support for Laravel v13 ([#52](https://github.com/wotzebra/laravel-swagger-ui/pull/52))
