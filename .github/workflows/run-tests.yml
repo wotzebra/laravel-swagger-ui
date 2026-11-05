@@ -11,13 +11,23 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [8.3, 8.4, 8.5]
+        php: [8.3, 8.4, 8.5, 8.6]
         laravel: ['11.*', '12.*', '13.*']
         dependency-version: [prefer-lowest, prefer-stable]
+        include:
+          # Laravel 13.32 is the first release whose session handlers implement create_sid() for PHP 8.6.
+          - php: 8.6
+            laravel: 13.*
+            framework: ^13.32
         exclude:
           - php: 8.4
             laravel: 11.*
             dependency-version: prefer-lowest
+          # Laravel 11 and 12 session handlers are missing create_sid(), which PHP 8.6 deprecates.
+          - php: 8.6
+            laravel: 11.*
+          - php: 8.6
+            laravel: 12.*
 
     name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.dependency-version }}
 
@@ -50,7 +60,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+          composer require "laravel/framework:${{ matrix.framework || matrix.laravel }}" --no-interaction --no-update
           composer config --global policy.advisories.block false
           composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
 
